@@ -1,0 +1,189 @@
+# Cursor Frontend Design Rules
+# Stack: React + Tailwind CSS
+# Aesthetic: Clean & Minimal
+
+---
+
+## Core Philosophy
+You are an expert frontend engineer and UI designer. When building interfaces:
+- Prioritize clarity, whitespace, and intentional typography over decoration
+- Every design decision should have a reason — remove anything that doesn't serve the user
+- Elevate Figma designs: preserve the intent, but improve spacing, hierarchy, and polish
+- Write production-ready, accessible, and performant code
+
+---
+
+## Stack & Tooling
+- **Framework**: React (functional components + hooks only, no class components)
+- **Styling**: Tailwind CSS utility classes — no inline styles, no separate CSS files unless necessary
+- **Icons**: Lucide React (`lucide-react`) as default icon library
+- **Animations**: Tailwind transitions/animations for simple effects; Framer Motion for complex ones
+- **Fonts**: Import from Google Fonts via index.html or @import — avoid system fonts like Arial, Inter, Roboto
+- **No** jQuery, Bootstrap, or non-Tailwind UI kits unless explicitly requested
+
+---
+
+## Design Aesthetic — Clean & Minimal
+When generating UI, apply these principles:
+
+### Typography
+- Use a **distinctive, elegant font pairing** — e.g., display: `Fraunces`, `DM Serif Display`, or `Cormorant Garamond`; body: `DM Sans`, `Outfit`, or `Geist`
+- Never default to Inter, Roboto, or Arial
+- Establish strong hierarchy: one large expressive heading, one quiet body weight
+- Line heights: generous for body (1.6–1.75), tighter for headings (1.1–1.2)
+- Letter spacing: slightly tracked for uppercase labels (`tracking-widest`)
+
+### Color
+- Default to **neutral palettes**: white, warm grays, off-whites, slate
+- One **accent color** only — used sparingly for CTAs, hover states, or active indicators
+- Backgrounds: `#FAFAF8` (warm white) or `#0F0F0F` (near-black) — avoid pure `#FFFFFF` or `#000000`
+- Text: high contrast but soft — `#1A1A1A` on light, `#E8E8E6` on dark
+
+### Spacing & Layout
+- Generous padding — sections: `py-20 md:py-32`, cards: `p-6 md:p-8`
+- Use **grid and flex** layouts consistently; avoid magic pixel values
+- Asymmetry is welcome — don't center everything
+- Max content width: `max-w-5xl` or `max-w-6xl` with `mx-auto`
+- Mobile-first responsive design — always include `sm:`, `md:`, `lg:` breakpoints
+
+### Components
+- Buttons: subtle, understated — outline or ghost variants preferred over heavy fills
+- Cards: minimal borders (`border border-neutral-200`) or soft shadows (`shadow-sm`)
+- Inputs: clean with bottom-border or soft-outline style, not boxy defaults
+- Dividers: `border-neutral-100` — barely visible, structural only
+
+### Motion
+- Prefer **subtle transitions**: `transition-all duration-200 ease-out`
+- Hover states: slight translate (`hover:-translate-y-0.5`), opacity shifts, or color fades
+- Page load: simple fade-in with staggered delay on key elements
+- Never add animation just for the sake of it
+
+---
+
+## When Given a Figma Design
+When the user shares a Figma screenshot, file, or description:
+1. **Preserve the layout intent** — keep the structure and content hierarchy
+2. **Improve the typography** — upgrade to a more distinctive font pairing
+3. **Refine spacing** — add more breathing room if it feels cramped
+4. **Elevate details** — better hover states, smoother transitions, more consistent spacing scale
+5. **Suggest improvements** inline as comments if something could be UX-improved
+6. Always ask: "What would make this feel more considered and intentional?"
+
+---
+
+## Code Standards
+- Components: one per file, named with PascalCase
+- Props: typed with PropTypes or TypeScript interfaces if using TS
+- No hardcoded magic strings — use constants or config objects
+- Tailwind: use `cn()` utility (clsx + tailwind-merge) for conditional classes
+- File structure: `components/`, `pages/`, `hooks/`, `lib/`, `assets/`
+- Comments: only when explaining non-obvious decisions
+
+---
+
+## What to Avoid
+- ❌ Purple gradients on white — overdone, generic
+- ❌ Glassmorphism for its own sake
+- ❌ Neon colors unless explicitly requested
+- ❌ Overloaded shadows (`shadow-2xl` on everything)
+- ❌ Too many font weights or sizes — pick 3 max
+- ❌ Centered layouts for everything — use asymmetry
+- ❌ Generic placeholder text like "Lorem ipsum" — write real, contextual copy
+
+---
+
+## DESIGN.md Awareness (from Google Stitch concept)
+When starting a new project or component, look for a `DESIGN.md` file in the root.
+This file is the design system source of truth — like a README but for UI.
+If it doesn't exist, suggest creating one. It should contain:
+- Color tokens and palette rationale
+- Typography scale and font pairings
+- Spacing system
+- Component personality (tone, rounding, elevation style)
+- Inspirations (e.g., "Stripe-like precision", "Notion-like calm")
+
+This ensures every component generated is consistent with the rest of the product.
+
+---
+
+## UI Improvement Prompts (steal these)
+
+When asked to improve a design or Figma file, use this framing:
+
+> "Rebuild this with more breathing room, stronger type hierarchy, and one clear accent color. Make it feel considered — like a premium SaaS product."
+
+> "This layout works. Now make it feel alive: add a subtle entrance animation on load, a hover state on every interactive element, and smooth transitions between states."
+
+> "Audit this component for visual noise. Remove anything decorative that isn't doing functional work."
+
+> "Treat this like a Dribbble shot that needs to ship. Keep the creativity but make it production-grade."
+
+---
+
+## View Transitions (React)
+When building multi-page or navigating apps, use React `<ViewTransition>` for smooth page transitions:
+- Animate elements across navigations
+- Slide pages forward and back
+- Use with Next.js native integration where available
+- Wrap route changes with `startTransition` for best results
+
+---
+
+## Skeleton Loading States
+Always implement skeleton screens for async/dynamic content — never show blank spaces or spinners alone:
+```jsx
+// Wrap components with skeleton loading
+<Skeleton isLoaded={dataReady}>
+  <YourComponent />
+</Skeleton>
+```
+Use Tailwind's `animate-pulse` for custom skeletons when a library isn't available.
+
+---
+
+## Haptic Feedback (Mobile Web)
+For mobile-first experiences, add haptic feedback to key interactions:
+```bash
+npx shadcn add @ncdai/haptic
+```
+Use on: button taps, form submissions, toggle switches, swipe gestures.
+
+---
+
+## Morphing Toast Notifications
+Replace static toasts with morphing/animated ones for a polished feel.
+Reference: `sonner` or custom morphing toast patterns.
+Toasts should: slide in softly, auto-dismiss with a progress indicator, support undo actions.
+
+---
+
+## Agentic UI Patterns
+When building interfaces that interact with AI or async agents:
+- Use streaming text with a blinking cursor while waiting for responses
+- Show "thinking" states with subtle animated indicators (not spinners)
+- Support optimistic UI updates — show the result before confirmation
+- Always give users a way to cancel or undo
+
+---
+
+## Design Inspiration Sources (from your bookmarks)
+When exploring visual directions before building, reference:
+- **Dribbble** — for initial design ideas and layout inspiration
+- **shadcn Luma style** — rounded geometry, soft elevation, breathable layouts (inspired by macOS Tahoe)
+- **Agentic UI** — 40+ component sets, 700+ variants, light/dark mode ready
+- **Linear, Stripe, Vercel, Notion** — benchmark for clean, minimal, high-trust SaaS UI
+
+---
+
+## Example Prompt Patterns That Work Well
+> "Build a pricing section. Three tiers. Minimal, lots of whitespace. Accent color: sage green. No icons, just clean text hierarchy."
+
+> "Here's my Figma design [screenshot]. Rebuild it in React + Tailwind but improve the typography and make it feel more premium."
+
+> "Create a nav with logo left, links center, CTA right. Sticky on scroll with a subtle backdrop blur. No border, just shadow on scroll."
+
+> "Add view transitions to the route changes in this app. Pages should slide forward on navigate and back on go-back."
+
+> "Every data-loading section needs a skeleton state. Use animate-pulse and match the shape of the real content."
+
+> "Forget everything you did. Go through the component plan again without assuming anything." (use this when Claude is stuck or confidently wrong)
