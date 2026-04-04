@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { offerings, paths } from "@/config/brand";
+import { offerings } from "@/config/brand";
 import { offeringIcons } from "@/lib/icons";
 import { Reveal } from "@/motion/Reveal";
-import { SmartLink } from "@/shell/SmartLink";
+import { BookLink } from "@/shell/BookLink";
 
 export function ServicesPage() {
   return (
@@ -46,13 +46,10 @@ export function ServicesPage() {
                   <p className="mt-3 text-base font-light leading-relaxed text-neutral-600">
                     {s.description}
                   </p>
-                  <SmartLink
-                    to={paths.contact}
-                    className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-accent"
-                  >
-                    Request this treatment
+                  <BookLink className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+                    Book this treatment
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </SmartLink>
+                  </BookLink>
                 </div>
               </motion.article>
             );

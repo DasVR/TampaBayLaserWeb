@@ -3,6 +3,8 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { brand, navItems, paths } from "@/config/brand";
 import { cn } from "@/lib/cn";
+import { BookLink } from "@/shell/BookLink";
+import { CurtainNavLink } from "@/shell/CurtainNavLink";
 import { SmartLink } from "@/shell/SmartLink";
 
 export function SiteHeader() {
@@ -53,10 +55,15 @@ export function SiteHeader() {
             aria-label="Primary"
           >
             {navItems.map((item) => (
-              <SmartLink
+              <CurtainNavLink
                 key={item.to}
                 to={item.to}
-                className="nav-chip relative py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500 transition-colors hover:text-ink"
+                className={({ isActive }) =>
+                  cn(
+                    "nav-chip relative py-1 text-[10px] font-semibold uppercase tracking-[0.22em] transition-colors",
+                    isActive ? "text-ink" : "text-neutral-500 hover:text-ink",
+                  )
+                }
               >
                 <span className="relative z-10">{item.label}</span>
                 <motion.span
@@ -65,7 +72,7 @@ export function SiteHeader() {
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 />
-              </SmartLink>
+              </CurtainNavLink>
             ))}
           </nav>
 
@@ -77,12 +84,9 @@ export function SiteHeader() {
               {brand.phoneDisplay}
             </a>
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-              <SmartLink
-                to={paths.contact}
-                className="inline-block rounded-md bg-accent px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift md:px-5"
-              >
+              <BookLink className="inline-block rounded-md bg-accent px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift md:px-5">
                 Book consultation
-              </SmartLink>
+              </BookLink>
             </motion.div>
             <button
               type="button"
@@ -124,13 +128,18 @@ export function SiteHeader() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.045 }}
                 >
-                  <SmartLink
+                  <CurtainNavLink
                     to={item.to}
                     onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink hover:bg-section"
+                    className={({ isActive }) =>
+                      cn(
+                        "block rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] hover:bg-section",
+                        isActive ? "bg-section text-ink" : "text-ink",
+                      )
+                    }
                   >
                     {item.label}
-                  </SmartLink>
+                  </CurtainNavLink>
                 </motion.div>
               ))}
               <motion.a

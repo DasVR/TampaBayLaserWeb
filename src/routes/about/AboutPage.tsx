@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { brand, paths } from "@/config/brand";
+import { brand } from "@/config/brand";
 import { Reveal } from "@/motion/Reveal";
-import { SmartLink } from "@/shell/SmartLink";
+import { BookLink } from "@/shell/BookLink";
 
 export function AboutPage() {
   return (
@@ -27,12 +27,22 @@ export function AboutPage() {
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <motion.div
-            className="aspect-[4/5] overflow-hidden rounded-sm bg-gradient-to-br from-section via-cream to-accent/20"
+            className="aspect-[4/5] overflow-hidden rounded-sm"
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          />
+          >
+            <img
+              src="/images/hero-portrait.png"
+              alt="Hannah, owner and CEO of Tampa Bay Laser"
+              width={960}
+              height={1200}
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
           <Reveal delay={0.08}>
             <h2 className="font-display text-2xl font-medium text-ink md:text-3xl">
               Small team. Big standards.
@@ -49,12 +59,9 @@ export function AboutPage() {
                 aftercare.
               </p>
             </div>
-            <SmartLink
-              to={paths.contact}
-              className="mt-10 inline-flex rounded-md bg-accent px-7 py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift hover:bg-accent-dark"
-            >
+            <BookLink className="mt-10 inline-flex rounded-md bg-accent px-7 py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift hover:bg-accent-dark">
               Book a consultation
-            </SmartLink>
+            </BookLink>
           </Reveal>
         </div>
       </section>

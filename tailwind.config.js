@@ -17,7 +17,7 @@ export default {
         marquee: "marquee 45s linear infinite",
       },
       colors: {
-        cream: "#ffffff",
+        cream: "#FAF8F4",
         ink: "#222222",
         charcoal: "#222222",
         section: "#f7f7f7",

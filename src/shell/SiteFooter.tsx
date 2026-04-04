@@ -6,7 +6,7 @@ import { SmartLink } from "@/shell/SmartLink";
 const legal = [
   { label: "Privacy", to: "#privacy" },
   { label: "Terms", to: "#terms" },
-  { label: "Sitemap", to: "#sitemap" },
+  { label: "Sitemap", to: "/sitemap.xml" },
 ] as const;
 
 export function SiteFooter() {
@@ -98,8 +98,8 @@ export function SiteFooter() {
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-accent" strokeWidth={1.75} />
-              <a href={`tel:${brand.phoneAltTel}`} className="tabular-nums hover:text-white">
-                {brand.phoneAlt}
+              <a href={`tel:${brand.phoneTel}`} className="tabular-nums hover:text-white">
+                {brand.phoneDisplay}
               </a>
             </li>
             <li className="flex items-center gap-3">

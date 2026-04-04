@@ -1,4 +1,4 @@
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { brand, paths } from "@/config/brand";
 import { Reveal } from "@/motion/Reveal";
@@ -10,33 +10,24 @@ export function StoryPanel() {
       <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-8">
         <Reveal className="relative order-2 lg:order-1">
           <div className="relative min-h-[22rem] overflow-hidden rounded-sm lg:min-h-[32rem]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ebefe6] via-section to-accent/15" />
-          <motion.div
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(220,193,108,0.28)_0%,transparent_50%)] opacity-50"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.5 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-          />
-          <div className="absolute left-6 top-6 z-10 max-w-[19rem] rounded-md border border-accent/25 bg-cream/95 p-4 shadow-lift backdrop-blur-[2px]">
-            <p className="flex items-start gap-2 text-xs leading-relaxed text-ink/85">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} aria-hidden />
-              <span>
-                <span className="font-semibold text-ink">Photo brief:</span> Hannah,
-                warm editorial portrait, ¾ view, soft natural light—aspirational
-                and approachable.
-              </span>
-            </p>
-          </div>
-          <div className="absolute bottom-6 left-6 z-10 rounded-md border border-white/70 bg-white/95 px-5 py-4 shadow-card">
-            <p className="text-[9px] font-bold uppercase tracking-[0.26em] text-neutral-500">
-              Meet your specialist
-            </p>
-            <p className="font-display mt-1.5 text-2xl font-medium text-ink">Hannah</p>
-            <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
-              Owner &amp; CEO
-            </p>
-          </div>
+            <img
+              src="/images/hero-portrait.png"
+              alt="Hannah, owner and CEO of Tampa Bay Laser"
+              width={960}
+              height={1200}
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute bottom-6 left-6 z-10 rounded-md border border-white/70 bg-white/95 px-5 py-4 shadow-card">
+              <p className="text-[9px] font-bold uppercase tracking-[0.26em] text-neutral-500">
+                Meet your specialist
+              </p>
+              <p className="font-display mt-1.5 text-2xl font-medium text-ink">Hannah</p>
+              <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+                Owner &amp; CEO
+              </p>
+            </div>
           </div>
         </Reveal>
 

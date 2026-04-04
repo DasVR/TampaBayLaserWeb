@@ -46,7 +46,7 @@ export function ReviewsWall() {
         <ul className="mt-16 grid gap-7 md:grid-cols-3">
           {reviews.map((t, idx) => (
             <motion.li
-              key={t.name}
+              key={t.attribution}
               layout
               onMouseEnter={() => setOpen(idx)}
               onFocus={() => setOpen(idx)}
@@ -71,7 +71,7 @@ export function ReviewsWall() {
                   “{t.quote}”
                 </blockquote>
                 <figcaption className="mt-8 text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-500">
-                  {t.name}
+                  {t.attribution}
                 </figcaption>
                 <AnimatePresence>
                   {open === idx ? (

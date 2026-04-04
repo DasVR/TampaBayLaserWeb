@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { paths } from "@/config/brand";
+import { BookLink } from "@/shell/BookLink";
 import { SmartLink } from "@/shell/SmartLink";
 
 export function ClosingCTA() {
@@ -31,13 +32,10 @@ export function ClosingCTA() {
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
           <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
-            <SmartLink
-              to={paths.contact}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-9 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift sm:w-auto hover:bg-accent-dark"
-            >
+            <BookLink className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-9 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift sm:w-auto hover:bg-accent-dark">
               Book now
               <ArrowRight className="h-4 w-4" aria-hidden strokeWidth={2.25} />
-            </SmartLink>
+            </BookLink>
           </motion.div>
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
             <SmartLink

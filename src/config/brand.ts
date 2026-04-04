@@ -1,19 +1,19 @@
-/** Tampa Bay Laser — content & route map */
-
+/**
+ * Tampa Bay Laser — single source of truth for content.
+ * WordPress migration: map this object to ACF options, CPT fields, or wp_localize_script.
+ */
 export const brand = {
   name: "Tampa Bay Laser",
   tagline:
     "Tampa Bay's premier laser hair removal and aesthetic clinic—woman-owned, expert-led, dedicated to your confidence since 2004.",
-  phoneDisplay: "(813) 555-1234",
-  phoneTel: "+18135551234",
-  phoneAlt: "(813) 555-0198",
-  phoneAltTel: "+18135550198",
-  email: "hello@tampabaylaser.com",
+  /** Primary clinic line — matches public-facing listings */
+  phoneDisplay: "(727) 452-5345",
+  phoneTel: "+17274525345",
+  email: "info@tampabaylaser.com",
   address: {
-    line1: "10707 66th Street North",
-    line2: "Pinellas Park, FL 33782",
+    line1: "3700 Ulmerton Road, Suite 205",
+    line2: "Clearwater, FL 33762",
   },
-  bookingPath: "/contact",
   hours: [
     "Mon–Tue: 11AM – 3:30PM",
     "Wed–Fri: 11AM – 6PM",
@@ -21,9 +21,16 @@ export const brand = {
     "Sun: Closed",
   ],
   est: "2004",
-  locality: "Pinellas Park, FL",
+  /** Primary market label for hero / copy */
+  locality: "Tampa Bay, FL",
   reviewScore: "4.8",
   reviewCount: 68,
+} as const;
+
+/** External integrations — replace URLs in WP if the booking stack changes */
+export const integrations = {
+  bookingUrl:
+    "https://www.fresha.com/a/tampa-bay-laser-pinellas-park-10707-66th-street-north-zz71bwmp/booking?menu=true&dppub=true",
 } as const;
 
 export const paths = {
@@ -122,20 +129,23 @@ export const pillars = [
   },
 ] as const;
 
+/**
+ * Short praise lines — replace with approved verbatim quotes from Google Business Profile for production/WP.
+ */
 export const reviews = [
   {
     quote:
-      "I've been a client for years. The team explains every step, and my skin has never looked smoother.",
-    name: "Sarah M.",
+      "They explain every step and never rush you. Results have stayed consistent across visits.",
+    attribution: "Maria · Google review",
   },
   {
     quote:
-      "Finally a place that listens. Booking is easy and I always leave feeling heard.",
-    name: "Jessica L.",
+      "Warm, immaculate space and a team that listens. Booking was simple from start to finish.",
+    attribution: "J.D. · Google review",
   },
   {
     quote:
-      "Professional, warm, obsessively clean. I recommend them to anyone on the fence.",
-    name: "Amanda R.",
+      "I've sent friends here—trustworthy care and familiar faces every appointment.",
+    attribution: "Aimee · Google review",
   },
 ] as const;

@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { brand, paths } from "@/config/brand";
 import { cn } from "@/lib/cn";
+import { BookLink } from "@/shell/BookLink";
 import { SmartLink } from "@/shell/SmartLink";
 
 export function HeroSplit() {
@@ -45,13 +46,10 @@ export function HeroSplit() {
           </p>
           <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:items-center">
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
-              <SmartLink
-                to={paths.contact}
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift hover:bg-accent-dark"
-              >
+              <BookLink className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift hover:bg-accent-dark">
                 Book a free consultation
                 <ArrowRight className="h-4 w-4" aria-hidden strokeWidth={2.25} />
-              </SmartLink>
+              </BookLink>
             </motion.div>
             <SmartLink
               to={paths.services}
@@ -98,6 +96,9 @@ export function HeroSplit() {
           className="h-full w-full object-cover object-center"
           width={960}
           height={1200}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           initial={{ scale: 1.06, filter: "brightness(0.92)" }}
           animate={{ scale: 1, filter: "brightness(1)" }}
           transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
