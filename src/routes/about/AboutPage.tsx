@@ -32,7 +32,7 @@ export function AboutPage() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
-              src="/images/hero-portrait.png"
+              src="/images/hero-portrait.jpg"
               alt="Hannah, owner and CEO of Tampa Bay Laser"
               width={960}
               height={1200}

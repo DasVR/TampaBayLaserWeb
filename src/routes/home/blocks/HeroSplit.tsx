@@ -107,11 +107,11 @@ export function HeroSplit() {
       {/* Portrait: first on mobile, right column on lg */}
       <div className="relative order-1 min-h-[min(22rem,65vh)] min-w-0 bg-neutral-950 sm:min-h-[22rem] lg:order-2 lg:min-h-0">
         <motion.img
-          src="/images/hero-portrait.png"
+          src="/images/hero-portrait.jpg"
           alt="Hannah, owner and CEO of Tampa Bay Laser"
           className="h-full w-full object-cover object-center"
-          width={960}
-          height={1200}
+          width={370}
+          height={540}
           fetchPriority="high"
           loading="eager"
           decoding="async"

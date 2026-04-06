@@ -7,6 +7,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -52,27 +53,83 @@ const containerVariants = {
   },
 };
 
-const stripVariants = {
-  boot: { y: "0%" },
-  "splash-reveal": {
-    y: "-100%",
-    transition: { duration: 0.58, ease: easeOut },
-  },
-  idle: { y: "-100%", transition: { duration: 0 } },
-  covering: {
-    y: "0%",
-    transition: { duration: 0.4, ease: easeIn },
-  },
-  revealing: {
-    y: "-100%",
-    transition: { duration: 0.5, ease: easeOut },
-  },
-};
+/** Vertical strips slide on Y when width ≥ height; stacked bands slide on X when width < height. */
+function makeStripVariants(horizontal: boolean) {
+  if (horizontal) {
+    return {
+      boot: { x: "0%", y: 0 },
+      "splash-reveal": {
+        x: "-100%",
+        y: 0,
+        transition: { duration: 0.58, ease: easeOut },
+      },
+      idle: { x: "-100%", y: 0, transition: { duration: 0 } },
+      covering: {
+        x: "0%",
+        y: 0,
+        transition: { duration: 0.4, ease: easeIn },
+      },
+      revealing: {
+        x: "-100%",
+        y: 0,
+        transition: { duration: 0.5, ease: easeOut },
+      },
+    };
+  }
+  return {
+    boot: { y: "0%", x: 0 },
+    "splash-reveal": {
+      y: "-100%",
+      x: 0,
+      transition: { duration: 0.58, ease: easeOut },
+    },
+    idle: { y: "-100%", x: 0, transition: { duration: 0 } },
+    covering: {
+      y: "0%",
+      x: 0,
+      transition: { duration: 0.4, ease: easeIn },
+    },
+    revealing: {
+      y: "-100%",
+      x: 0,
+      transition: { duration: 0.5, ease: easeOut },
+    },
+  };
+}
+
+/** True when width < height — use horizontal (X) strip motion; otherwise vertical (Y). */
+function subscribeNarrowerThanTall(cb: () => void) {
+  const run = () => cb();
+  window.addEventListener("resize", run);
+  window.addEventListener("orientationchange", run);
+  return () => {
+    window.removeEventListener("resize", run);
+    window.removeEventListener("orientationchange", run);
+  };
+}
+
+function getNarrowerThanTallSnapshot() {
+  return window.innerWidth < window.innerHeight;
+}
+
+function getNarrowerThanTallServerSnapshot() {
+  return false;
+}
+
+function useNarrowerThanTallViewport() {
+  return useSyncExternalStore(
+    subscribeNarrowerThanTall,
+    getNarrowerThanTallSnapshot,
+    getNarrowerThanTallServerSnapshot,
+  );
+}
 
 export function CurtainProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const reduce = useReducedMotion();
+  const horizontalStrips = useNarrowerThanTallViewport();
+  const stripVariants = useMemo(() => makeStripVariants(horizontalStrips), [horizontalStrips]);
   const [phase, setPhase] = useState<Phase>(reduce ? "idle" : "boot");
   const pending = useRef<string | null>(null);
   const phaseRef = useRef(phase);
@@ -144,6 +201,7 @@ export function CurtainProvider({ children }: { children: ReactNode }) {
         aria-hidden
         className={cn(
           "fixed inset-0 z-[400] flex",
+          horizontalStrips ? "flex-col" : "flex-row",
           phase === "idle" ? "pointer-events-none" : "pointer-events-auto",
         )}
         variants={containerVariants}
@@ -156,7 +214,12 @@ export function CurtainProvider({ children }: { children: ReactNode }) {
             custom={i}
             variants={stripVariants}
             onAnimationComplete={() => onStripComplete(i)}
-            className="relative flex-1 origin-top border-l border-ink/[0.04] bg-gradient-to-b from-cream via-cream to-section first:border-l-0"
+            className={cn(
+              "relative flex-1 from-cream via-cream to-section",
+              horizontalStrips
+                ? "origin-left border-t border-ink/[0.04] bg-gradient-to-r first:border-t-0"
+                : "origin-top border-l border-ink/[0.04] bg-gradient-to-b first:border-l-0",
+            )}
             style={{
               boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.35)",
             }}

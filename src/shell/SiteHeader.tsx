@@ -34,19 +34,23 @@ export function SiteHeader() {
           scrolled ? "border-[#e4e4e4] shadow-[0_8px_30px_-12px_rgba(34,34,34,0.12)]" : "border-transparent",
         )}
       >
-        <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 px-page py-3.5 sm:gap-4">
+        <div className="mx-auto flex min-h-[3.25rem] min-w-0 max-w-6xl items-center justify-between gap-3 px-page py-3 sm:gap-4 sm:py-3.5">
           <SmartLink
             to={paths.home}
-            className="group relative flex min-w-0 max-w-[65%] items-center gap-2 sm:max-w-none sm:gap-2.5"
+            className="group relative flex min-w-0 max-w-[min(18rem,calc(100vw-10.25rem))] shrink items-center sm:max-w-[min(22rem,calc(100vw-11.5rem))] lg:max-w-[24rem]"
           >
-            <motion.span
-              layoutId="brand-dot"
-              className="inline-block h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_0_3px_rgba(220,193,108,0.35)]"
-              whileHover={{ scale: 1.15 }}
-              transition={{ type: "spring", stiffness: 400, damping: 18 }}
-            />
-            <span className="font-display text-fluid-brand font-semibold uppercase text-ink [text-wrap:balance]">
-              {brand.name}
+            <span className="inline-flex rounded-md bg-white/95 px-2 py-1 shadow-[0_1px_3px_rgba(34,34,34,0.1)] ring-1 ring-ink/[0.08]">
+              <motion.img
+                layoutId="brand-logo"
+                src="/brand-logo.png"
+                alt={brand.name}
+                width={359}
+                height={203}
+                decoding="async"
+                className="h-9 w-auto max-w-full object-contain object-left drop-shadow-[0_1px_1px_rgba(34,34,34,0.12)] sm:h-10 lg:h-11"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 450, damping: 24 }}
+              />
             </span>
           </SmartLink>
 

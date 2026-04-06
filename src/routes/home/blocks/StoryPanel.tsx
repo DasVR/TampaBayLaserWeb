@@ -11,7 +11,7 @@ export function StoryPanel() {
         <Reveal className="relative order-2 min-w-0 lg:order-1">
           <div className="relative min-h-[min(22rem,58vh)] overflow-hidden rounded-sm lg:min-h-[32rem]">
             <img
-              src="/images/hero-portrait.png"
+              src="/images/hero-portrait.jpg"
               alt="Hannah, owner and CEO of Tampa Bay Laser"
               width={960}
               height={1200}
