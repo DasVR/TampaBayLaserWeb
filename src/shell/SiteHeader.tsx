@@ -34,10 +34,10 @@ export function SiteHeader() {
           scrolled ? "border-[#e4e4e4] shadow-[0_8px_30px_-12px_rgba(34,34,34,0.12)]" : "border-transparent",
         )}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 md:px-6 lg:px-8">
+        <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 px-page py-3.5 sm:gap-4">
           <SmartLink
             to={paths.home}
-            className="group relative flex items-center gap-2.5"
+            className="group relative flex min-w-0 max-w-[65%] items-center gap-2 sm:max-w-none sm:gap-2.5"
           >
             <motion.span
               layoutId="brand-dot"
@@ -45,7 +45,7 @@ export function SiteHeader() {
               whileHover={{ scale: 1.15 }}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
             />
-            <span className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-ink">
+            <span className="font-display text-fluid-brand font-semibold uppercase text-ink [text-wrap:balance]">
               {brand.name}
             </span>
           </SmartLink>
@@ -60,7 +60,7 @@ export function SiteHeader() {
                 to={item.to}
                 className={({ isActive }) =>
                   cn(
-                    "nav-chip relative py-1 text-[10px] font-semibold uppercase tracking-[0.22em] transition-colors",
+                    "nav-chip relative py-1 text-fluid-caps font-semibold uppercase transition-colors",
                     isActive ? "text-ink" : "text-neutral-500 hover:text-ink",
                   )
                 }
@@ -76,15 +76,15 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3 md:gap-5">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3 md:gap-5">
             <a
               href={`tel:${brand.phoneTel}`}
-              className="hidden text-sm font-medium tabular-nums text-ink/90 sm:inline"
+              className="hidden text-fluid-body font-medium tabular-nums text-ink/90 sm:inline"
             >
               {brand.phoneDisplay}
             </a>
-            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-              <BookLink className="inline-block rounded-md bg-accent px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift md:px-5">
+            <motion.div className="shrink-0" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <BookLink className="inline-block max-w-[10.5rem] rounded-md bg-accent px-3 py-2.5 text-center text-fluid-caps font-bold uppercase leading-tight text-white shadow-lift sm:max-w-none sm:px-5 sm:py-2.5">
                 Book consultation
               </BookLink>
             </motion.div>
@@ -133,7 +133,7 @@ export function SiteHeader() {
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
                       cn(
-                        "block rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] hover:bg-section",
+                        "block rounded-md px-3 py-3 text-fluid-body font-semibold uppercase tracking-[0.18em] [text-wrap:balance] hover:bg-section",
                         isActive ? "bg-section text-ink" : "text-ink",
                       )
                     }

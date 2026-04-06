@@ -9,9 +9,9 @@ export function HeroSplit() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="grid overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
+      className="grid min-w-0 overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
     >
-      <div className="relative flex flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-6 py-14 text-white md:px-10 md:py-20 lg:px-14 lg:py-24">
+      <div className="relative flex min-w-0 flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-page py-hero text-white md:px-page lg:px-[clamp(1.25rem,0.75rem+2vw,3.5rem)] lg:py-[clamp(3.5rem,2.5rem+3vw,6rem)]">
         <motion.div
           className="pointer-events-none absolute left-0 top-0 h-[min(420px,55%)] w-[min(420px,85%)] bg-[radial-gradient(ellipse_at_30%_20%,rgba(220,193,108,0.2)_0%,transparent_62%)]"
           aria-hidden
@@ -19,49 +19,51 @@ export function HeroSplit() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
         />
-        <div className="relative">
-          <p className="mb-8 flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.38em] text-accent">
+        <div className="relative min-w-0">
+          <p className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fluid-caps font-bold uppercase text-accent sm:mb-8">
             <motion.span
-              className="h-px w-10 bg-accent"
+              className="h-px w-8 shrink-0 bg-accent sm:w-10"
               aria-hidden
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{ originX: 0 }}
             />
-            {brand.locality} — Est. {brand.est}
+            <span className="min-w-0 break-words">
+              {brand.locality} — Est. {brand.est}
+            </span>
           </p>
           <h1
             id="hero-heading"
-            className="font-display max-w-[17ch] text-balance text-display-sm font-medium text-white md:max-w-xl md:text-display lg:text-display-lg"
+            className="font-display max-w-[min(100%,36rem)] text-balance text-fluid-hero font-medium text-white break-words"
           >
             Confidence begins with{" "}
             <em className="text-[1.02em] font-medium italic text-accent">flawless</em>{" "}
             skin.
           </h1>
-          <p className="mt-8 max-w-md text-base font-light leading-relaxed text-white/75 md:text-lg md:leading-relaxed">
-            For over two decades, {brand.name} has paired medical-grade
-            treatments with unhurried, one-on-one care—so every visit feels
-            clear, calm, and completely yours.
+          <p className="mt-6 max-w-lg text-fluid-body-lg font-light text-white/75 sm:mt-8 md:max-w-xl">
+            For over two decades, {brand.name} has paired medical-grade treatments with
+            unhurried, one-on-one care—so every visit feels clear, calm, and completely
+            yours.
           </p>
-          <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:items-center">
-            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
-              <BookLink className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift hover:bg-accent-dark">
+          <div className="mt-10 flex min-w-0 flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5">
+            <motion.div className="min-w-0 sm:shrink-0" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
+              <BookLink className="inline-flex w-full min-w-0 items-center justify-center gap-2 rounded-md bg-accent px-5 py-3.5 text-center text-fluid-caps font-bold uppercase leading-snug tracking-[0.2em] text-white shadow-lift hover:bg-accent-dark sm:inline-flex sm:w-auto sm:px-7 sm:py-4">
                 Book a free consultation
-                <ArrowRight className="h-4 w-4" aria-hidden strokeWidth={2.25} />
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden strokeWidth={2.25} />
               </BookLink>
             </motion.div>
             <SmartLink
               to={paths.services}
-              className="inline-flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.24em] text-white/95 underline decoration-accent decoration-2 underline-offset-[10px] transition-opacity hover:opacity-85"
+              className="inline-flex min-w-0 items-center justify-center gap-1 text-center text-fluid-caps font-bold uppercase leading-snug tracking-[0.2em] text-white/95 underline decoration-accent decoration-2 underline-offset-4 transition-opacity hover:opacity-85 sm:justify-center sm:text-left sm:underline-offset-[10px]"
             >
-              Explore our services
-              <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden strokeWidth={2.25} />
+              <span className="break-words">Explore our services</span>
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden strokeWidth={2.25} />
             </SmartLink>
           </div>
         </div>
 
-        <dl className="relative mt-20 grid grid-cols-3 gap-4 border-t border-white/12 pt-12 text-center sm:text-left">
+        <dl className="relative mt-12 grid min-w-0 grid-cols-1 gap-6 border-t border-white/12 pt-10 text-left sm:mt-16 sm:grid-cols-3 sm:gap-4 sm:pt-12 sm:text-center md:text-left">
           {[
             { k: "Treatments performed", v: "200K+" },
             { k: "Google rating", v: brand.reviewScore, star: true },
@@ -69,12 +71,15 @@ export function HeroSplit() {
           ].map((row, i) => (
             <div
               key={row.k}
-              className={cn("relative sm:px-4", i === 1 && "border-x border-white/12")}
+              className={cn(
+                "relative min-w-0 px-0 sm:px-2",
+                i === 1 && "sm:border-x sm:border-white/12 sm:px-4",
+              )}
             >
-              <dt className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/45">
+              <dt className="text-fluid-stat-label font-bold uppercase text-white/45 [text-wrap:balance]">
                 {row.k}
               </dt>
-              <dd className="mt-2 font-display text-3xl font-medium tabular-nums md:text-4xl">
+              <dd className="mt-2 font-display text-fluid-stat font-medium tabular-nums">
                 {row.star ? (
                   <>
                     {row.v}
@@ -89,7 +94,7 @@ export function HeroSplit() {
         </dl>
       </div>
 
-      <div className="relative min-h-[22rem] bg-neutral-950 lg:min-h-0">
+      <div className="relative min-h-[min(22rem,65vh)] min-w-0 bg-neutral-950 sm:min-h-[22rem] lg:min-h-0">
         <motion.img
           src="/images/hero-portrait.png"
           alt="Hannah, owner and CEO of Tampa Bay Laser"
@@ -103,22 +108,24 @@ export function HeroSplit() {
           animate={{ scale: 1, filter: "brightness(1)" }}
           transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
         />
-        <div className="pointer-events-none absolute right-6 top-6 hidden flex-col gap-2 md:flex">
+        <div className="pointer-events-none absolute right-4 top-4 hidden flex-col gap-2 md:right-6 md:top-6 md:flex">
           {["Google reviews", "200K+ treatments done"].map((label) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.45, duration: 0.45 }}
-              className="rounded-md border border-white/15 bg-white/[0.97] px-4 py-3 text-[9px] font-bold uppercase tracking-[0.2em] text-ink shadow-card backdrop-blur-sm"
+              className="max-w-[12rem] rounded-md border border-white/15 bg-white/[0.97] px-3 py-2.5 text-fluid-caps-tight font-bold uppercase text-ink shadow-card backdrop-blur-sm md:max-w-none md:px-4 md:py-3"
             >
-              {label}
+              <span className="text-pretty">{label}</span>
             </motion.div>
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal via-charcoal/75 to-transparent px-6 pb-8 pt-24 md:px-8 md:pb-10">
-          <p className="font-display text-3xl font-medium text-white md:text-4xl">Hannah</p>
-          <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.28em] text-white/70">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal via-charcoal/75 to-transparent px-page pb-6 pt-20 sm:pb-8 sm:pt-24 md:px-8 md:pb-10">
+          <p className="font-display text-fluid-stat font-medium text-white md:text-[clamp(1.75rem,1.2rem+1.5vw,2.25rem)]">
+            Hannah
+          </p>
+          <p className="mt-2 text-fluid-caps font-bold uppercase tracking-[0.28em] text-white/70 [text-wrap:balance]">
             Owner &amp; CEO · {brand.name}
           </p>
         </div>

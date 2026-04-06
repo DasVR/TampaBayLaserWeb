@@ -7,7 +7,7 @@ import { SmartLink } from "@/shell/SmartLink";
 export function ClosingCTA() {
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-charcoal to-[#1a1a1a] py-28 text-center text-white md:py-36"
+      className="relative min-w-0 overflow-hidden bg-gradient-to-b from-charcoal to-[#1a1a1a] py-section text-center text-white"
       aria-labelledby="cta-heading"
     >
       <motion.div
@@ -17,30 +17,28 @@ export function ClosingCTA() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <div className="pointer-events-none absolute -left-24 top-1/2 h-[min(520px,70vw)] w-[min(520px,70vw)] -translate-y-1/2 rounded-full bg-accent/5 blur-3xl" />
-      <div className="relative mx-auto max-w-3xl px-6">
-        <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent">
-          Ready to get started
-        </p>
+      <div className="relative mx-auto min-w-0 max-w-3xl px-page">
+        <p className="text-fluid-caps-wide font-bold uppercase text-accent">Ready to get started</p>
         <h2
           id="cta-heading"
-          className="mt-8 font-display text-[2.125rem] font-medium leading-[1.08] tracking-[-0.02em] md:text-[2.85rem] lg:text-[3.15rem]"
+          className="mt-6 font-display text-fluid-section-lg font-medium tracking-[-0.02em] [text-wrap:balance] sm:mt-8"
         >
           Your journey to <em className="text-[1.02em] italic text-accent">radiance</em> starts here
         </h2>
-        <p className="mx-auto mt-8 max-w-lg text-base font-light leading-relaxed text-white/72 md:text-lg">
+        <p className="mx-auto mt-6 max-w-lg text-fluid-body-lg font-light text-white/72 [text-wrap:pretty] sm:mt-8">
           Complimentary consultation. Transparent plans. Specialists who remember your name.
         </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-          <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
-            <BookLink className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-9 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lift sm:w-auto hover:bg-accent-dark">
+        <div className="mt-10 flex min-w-0 flex-col items-stretch justify-center gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center sm:gap-5">
+          <motion.div className="min-w-0 w-full sm:w-auto" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
+            <BookLink className="inline-flex w-full min-w-0 items-center justify-center gap-2 rounded-md bg-accent px-6 py-3.5 text-fluid-caps font-bold uppercase leading-snug tracking-[0.2em] text-white shadow-lift hover:bg-accent-dark sm:w-auto sm:px-9 sm:py-4">
               Book now
-              <ArrowRight className="h-4 w-4" aria-hidden strokeWidth={2.25} />
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden strokeWidth={2.25} />
             </BookLink>
           </motion.div>
-          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
+          <motion.div className="min-w-0 w-full sm:w-auto" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
             <SmartLink
               to={paths.contact}
-              className="inline-flex w-full items-center justify-center rounded-md border-2 border-white/35 px-9 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white sm:w-auto hover:border-white hover:bg-white/5"
+              className="inline-flex w-full min-w-0 items-center justify-center rounded-md border-2 border-white/35 px-6 py-3.5 text-fluid-caps font-bold uppercase leading-snug tracking-[0.2em] text-white hover:border-white hover:bg-white/5 sm:w-auto sm:px-9 sm:py-4"
             >
               Contact us
             </SmartLink>

@@ -6,10 +6,10 @@ import { SmartLink } from "@/shell/SmartLink";
 
 export function StoryPanel() {
   return (
-    <section className="bg-section py-24 md:py-32" aria-labelledby="story-heading">
-      <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-8">
-        <Reveal className="relative order-2 lg:order-1">
-          <div className="relative min-h-[22rem] overflow-hidden rounded-sm lg:min-h-[32rem]">
+    <section className="bg-section py-section" aria-labelledby="story-heading">
+      <div className="mx-auto grid min-w-0 max-w-6xl gap-12 px-page lg:grid-cols-2 lg:items-center lg:gap-20">
+        <Reveal className="relative order-2 min-w-0 lg:order-1">
+          <div className="relative min-h-[min(22rem,58vh)] overflow-hidden rounded-sm lg:min-h-[32rem]">
             <img
               src="/images/hero-portrait.png"
               alt="Hannah, owner and CEO of Tampa Bay Laser"
@@ -19,31 +19,31 @@ export function StoryPanel() {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute bottom-6 left-6 z-10 rounded-md border border-white/70 bg-white/95 px-5 py-4 shadow-card">
-              <p className="text-[9px] font-bold uppercase tracking-[0.26em] text-neutral-500">
+            <div className="absolute bottom-4 left-4 right-4 z-10 rounded-md border border-white/70 bg-white/95 p-4 shadow-card sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-[19rem] sm:p-5">
+              <p className="text-fluid-stat-label font-bold uppercase tracking-[0.26em] text-neutral-500">
                 Meet your specialist
               </p>
-              <p className="font-display mt-1.5 text-2xl font-medium text-ink">Hannah</p>
-              <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="font-display mt-1.5 text-fluid-section font-medium text-ink sm:text-2xl">Hannah</p>
+              <p className="mt-1 text-fluid-caps font-semibold uppercase tracking-[0.2em] text-neutral-500">
                 Owner &amp; CEO
               </p>
             </div>
           </div>
         </Reveal>
 
-        <Reveal delay={0.08} className="order-1 px-6 lg:order-2 lg:px-0">
-          <p className="mb-6 flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.38em] text-neutral-500">
-            <span className="h-px w-10 bg-accent" aria-hidden />
-            Our story
+        <Reveal delay={0.08} className="order-1 min-w-0 lg:order-2">
+          <p className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fluid-eyebrow font-bold uppercase text-neutral-500">
+            <span className="h-px w-8 shrink-0 bg-accent sm:w-10" aria-hidden />
+            <span>Our story</span>
           </p>
           <h2
             id="story-heading"
-            className="max-w-xl font-display text-[2.125rem] font-medium leading-[1.08] tracking-[-0.02em] text-ink md:text-[2.75rem]"
+            className="max-w-xl font-display text-fluid-section-lg font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
           >
             A clinic built on <em className="text-[1.04em] italic text-accent">expertise</em>{" "}
             and care.
           </h2>
-          <div className="mt-8 max-w-lg space-y-5 text-base font-light leading-relaxed text-neutral-600 md:text-[1.05rem] md:leading-[1.7]">
+          <div className="mt-8 max-w-lg space-y-5 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
             <p>
               {brand.name} is a woman-owned practice rooted in {brand.locality}—a
               small team that has performed over 200,000 treatments without
@@ -54,13 +54,13 @@ export function StoryPanel() {
               specialists who remember your goals—not a revolving door.
             </p>
           </div>
-          <motion.div className="mt-12 inline-block" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
+          <motion.div className="mt-10 inline-block min-w-0 sm:mt-12" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
             <SmartLink
               to={paths.about}
-              className="inline-flex items-center gap-2 rounded-md bg-ink px-7 py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-lift hover:bg-charcoal"
+              className="inline-flex min-w-0 items-center gap-2 rounded-md bg-ink px-6 py-3.5 text-fluid-caps font-bold uppercase leading-snug tracking-[0.18em] text-white shadow-lift hover:bg-charcoal sm:px-7 sm:py-4"
             >
               Meet the team
-              <ArrowRight className="h-4 w-4" aria-hidden strokeWidth={2.25} />
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden strokeWidth={2.25} />
             </SmartLink>
           </motion.div>
         </Reveal>

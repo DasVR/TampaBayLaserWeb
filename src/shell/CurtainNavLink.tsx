@@ -1,9 +1,15 @@
-import { type MouseEventHandler, type ReactNode } from "react";
+import {
+  type MouseEventHandler,
+  type PointerEventHandler,
+  type ReactNode,
+} from "react";
 import { NavLink, type NavLinkProps } from "react-router-dom";
+import { hapticImpact } from "@/lib/haptic";
 import { useCurtainNav } from "@/shell/Curtain";
 
 type Props = Omit<NavLinkProps, "onClick"> & {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+  onPointerDown?: PointerEventHandler<HTMLAnchorElement>;
   children?: ReactNode;
 };
 
@@ -20,10 +26,16 @@ function toPath(to: NavLinkProps["to"]): string {
 export function CurtainNavLink({
   to,
   onClick,
+  onPointerDown,
   children,
   ...rest
 }: Props) {
   const { requestGo } = useCurtainNav();
+
+  const handlePointerDown: PointerEventHandler<HTMLAnchorElement> = (e) => {
+    if (e.pointerType === "touch") hapticImpact("light");
+    onPointerDown?.(e);
+  };
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (e.defaultPrevented) return;
@@ -38,7 +50,7 @@ export function CurtainNavLink({
   };
 
   return (
-    <NavLink to={to} onClick={handleClick} {...rest}>
+    <NavLink to={to} onClick={handleClick} onPointerDown={handlePointerDown} {...rest}>
       {children}
     </NavLink>
   );
