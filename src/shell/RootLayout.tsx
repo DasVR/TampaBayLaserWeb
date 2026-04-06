@@ -23,6 +23,9 @@ export function RootLayout() {
         position="bottom-right"
         closeButton
         duration={5000}
+        mobileOffset={{
+          bottom: "calc(4.75rem + env(safe-area-inset-bottom, 0px))",
+        }}
         toastOptions={{
           unstyled: true,
           classNames: {

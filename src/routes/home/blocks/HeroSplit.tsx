@@ -9,7 +9,7 @@ export function HeroSplit() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="grid min-w-0 overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
+      className="grid min-w-0 grid-cols-1 overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
     >
       {/* Copy: second on mobile, left column on lg */}
       <div className="relative order-2 flex min-w-0 flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-page py-hero text-white lg:order-1 md:px-page lg:px-[clamp(1.25rem,0.75rem+2vw,3.5rem)] lg:py-[clamp(3.5rem,2.5rem+3vw,6rem)]">

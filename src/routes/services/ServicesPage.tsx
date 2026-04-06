@@ -34,13 +34,13 @@ export function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-5%" }}
                 transition={{ delay: idx * 0.05, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex min-w-0 flex-col gap-6 rounded-xl border border-[#e4e4e4] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-card sm:p-8 md:flex-row md:items-start md:gap-10 md:p-10"
+                className="group flex min-w-0 flex-row items-start gap-4 rounded-xl border border-[#e4e4e4] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-card sm:gap-6 sm:p-8 md:gap-10 md:p-10"
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent/12">
-                  <Icon className="h-6 w-6 text-accent" strokeWidth={1.65} />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/12 sm:h-14 sm:w-14">
+                  <Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" strokeWidth={1.65} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h2 className="font-display text-[clamp(1.25rem,1.05rem+0.65vw,1.75rem)] font-medium text-ink [text-wrap:balance]">
+                  <h2 className="font-display text-[clamp(1.25rem,1.05rem+0.65vw,1.75rem)] font-medium leading-snug text-ink [text-wrap:balance]">
                     {s.title}
                   </h2>
                   <p className="mt-2 text-fluid-body font-medium tracking-wide text-accent [text-wrap:pretty]">
