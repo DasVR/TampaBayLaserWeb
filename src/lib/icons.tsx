@@ -6,6 +6,7 @@ import {
   Shield,
   Sparkles,
   Sun,
+  WandSparkles,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -19,6 +20,7 @@ export const offeringIcons: Record<OfferingIconName, LucideIcon> = {
   activity: Activity,
   sun: Sun,
   sparkles: Sparkles,
+  wandSparkles: WandSparkles,
   heart: Heart,
   scissors: Scissors,
 };

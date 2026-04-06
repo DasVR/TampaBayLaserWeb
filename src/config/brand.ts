@@ -91,7 +91,7 @@ export const offerings = [
     slug: "facials",
     description:
       "Customized facial treatments designed to cleanse, hydrate, and restore your skin's natural glow — paired seamlessly with your existing aesthetic plan.",
-    icon: "sparkles" as const,
+    icon: "wandSparkles" as const,
     pricing: "From $95 · series & add-ons quoted at consult",
   },
   {
