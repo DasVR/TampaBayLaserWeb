@@ -11,7 +11,8 @@ export function HeroSplit() {
       aria-labelledby="hero-heading"
       className="grid min-w-0 overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
     >
-      <div className="relative flex min-w-0 flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-page py-hero text-white md:px-page lg:px-[clamp(1.25rem,0.75rem+2vw,3.5rem)] lg:py-[clamp(3.5rem,2.5rem+3vw,6rem)]">
+      {/* Copy: second on mobile, left column on lg */}
+      <div className="relative order-2 flex min-w-0 flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-page py-hero text-white lg:order-1 md:px-page lg:px-[clamp(1.25rem,0.75rem+2vw,3.5rem)] lg:py-[clamp(3.5rem,2.5rem+3vw,6rem)]">
         <motion.div
           className="pointer-events-none absolute left-0 top-0 h-[min(420px,55%)] w-[min(420px,85%)] bg-[radial-gradient(ellipse_at_30%_20%,rgba(220,193,108,0.2)_0%,transparent_62%)]"
           aria-hidden
@@ -63,24 +64,33 @@ export function HeroSplit() {
           </div>
         </div>
 
-        <dl className="relative mt-12 grid min-w-0 grid-cols-1 gap-6 border-t border-white/12 pt-10 text-left sm:mt-16 sm:grid-cols-3 sm:gap-4 sm:pt-12 sm:text-center md:text-left">
-          {[
-            { k: "Treatments performed", v: "200K+" },
-            { k: "Google rating", v: brand.reviewScore, star: true },
-            { k: "Experience", v: "20 yrs" },
-          ].map((row, i) => (
+        <dl className="relative mt-12 grid min-w-0 grid-cols-3 gap-0 border-t border-white/12 pt-8 text-center sm:mt-16 sm:pt-10">
+          {(
+            [
+              { k: "Treatments performed", kMobile: "Treatments" as const, v: "200K+" },
+              { k: "Google rating", v: brand.reviewScore, star: true as const },
+              { k: "Experience", v: "20 yrs" },
+            ] as const
+          ).map((row, i) => (
             <div
               key={row.k}
               className={cn(
-                "relative min-w-0 px-0 sm:px-2",
-                i === 1 && "sm:border-x sm:border-white/12 sm:px-4",
+                "relative min-w-0 border-white/12 px-1 py-px sm:px-2",
+                i < 2 && "border-r",
               )}
             >
-              <dt className="text-fluid-stat-label font-bold uppercase text-white/45 [text-wrap:balance]">
-                {row.k}
+              <dt className="line-clamp-1 text-fluid-stat-label font-bold uppercase text-white/45">
+                {"kMobile" in row ? (
+                  <>
+                    <span className="sm:hidden">{row.kMobile}</span>
+                    <span className="hidden sm:inline">{row.k}</span>
+                  </>
+                ) : (
+                  row.k
+                )}
               </dt>
-              <dd className="mt-2 font-display text-fluid-stat font-medium tabular-nums">
-                {row.star ? (
+              <dd className="mt-1.5 font-display text-[clamp(1.125rem,0.85rem+1vw,2.25rem)] font-medium tabular-nums leading-tight sm:mt-2">
+                {"star" in row && row.star ? (
                   <>
                     {row.v}
                     <span className="text-accent">★</span>
@@ -94,7 +104,8 @@ export function HeroSplit() {
         </dl>
       </div>
 
-      <div className="relative min-h-[min(22rem,65vh)] min-w-0 bg-neutral-950 sm:min-h-[22rem] lg:min-h-0">
+      {/* Portrait: first on mobile, right column on lg */}
+      <div className="relative order-1 min-h-[min(22rem,65vh)] min-w-0 bg-neutral-950 sm:min-h-[22rem] lg:order-2 lg:min-h-0">
         <motion.img
           src="/images/hero-portrait.png"
           alt="Hannah, owner and CEO of Tampa Bay Laser"

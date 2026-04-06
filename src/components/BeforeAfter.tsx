@@ -1,6 +1,7 @@
 import { type KeyboardEvent, useLayoutEffect, useRef, useState } from "react";
 import { GripVertical } from "lucide-react";
 import {
+  AnimatePresence,
   motion,
   useMotionValue,
   useTransform,
@@ -39,6 +40,7 @@ export function BeforeAfter({
   /** TranslateX (px) of hit strip’s left edge; centerline = x + HALF_HIT */
   const x = useMotionValue(0);
   const [pct, setPct] = useState(50);
+  const [hintDismissed, setHintDismissed] = useState(false);
 
   useLayoutEffect(() => {
     const el = trackRef.current;
@@ -142,6 +144,7 @@ export function BeforeAfter({
           dragMomentum={false}
           dragElastic={0}
           dragConstraints={{ left: dragMin, right: dragMax }}
+          onDragStart={() => setHintDismissed(true)}
           onKeyDown={onKey}
         >
           {/* Full-height divider: sharp 1px bar, centered in hit strip */}
@@ -153,6 +156,21 @@ export function BeforeAfter({
             <GripVertical className="h-5 w-5 text-neutral-500" strokeWidth={1.75} aria-hidden />
           </div>
         </motion.div>
+
+        <AnimatePresence>
+          {!hintDismissed ? (
+            <motion.p
+              key="drag-hint"
+              initial={{ opacity: 0.85 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              className="pointer-events-none absolute bottom-3 left-1/2 z-[15] max-w-[90%] -translate-x-1/2 rounded bg-charcoal/80 px-3 py-1.5 text-center text-fluid-caps-tight font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm"
+            >
+              Drag to compare
+            </motion.p>
+          ) : null}
+        </AnimatePresence>
       </div>
       {caption ? (
         <figcaption className="text-center text-fluid-caption font-medium uppercase text-neutral-500 [text-wrap:pretty]">

@@ -8,11 +8,11 @@ import { SmartLink } from "@/shell/SmartLink";
 
 function ServicesSkeleton() {
   return (
-    <ul className="mt-14 grid min-w-0 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
+    <ul className="mt-14 grid min-w-0 grid-cols-2 gap-4 sm:gap-5" aria-hidden>
       {offerings.map((s) => (
         <li
           key={s.slug}
-          className="flex h-full min-w-0 animate-pulse flex-col rounded-md border border-white/10 bg-white/[0.04] p-6 sm:p-7 md:p-8"
+          className="flex h-full min-w-0 animate-pulse flex-col rounded-md border border-white/10 bg-white/[0.04] p-4 sm:p-7 md:p-8"
         >
           <div className="h-10 w-10 rounded-full bg-white/10" />
           <div className="mt-5 h-6 w-3/5 rounded bg-white/10 sm:mt-6" />
@@ -58,19 +58,19 @@ export function ServicesPreview() {
         {!ready ? (
           <ServicesSkeleton />
         ) : (
-          <ul className="mt-14 grid min-w-0 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 grid min-w-0 grid-cols-2 gap-4 sm:gap-5">
             {offerings.map((service, idx) => {
               const Icon = offeringIcons[service.icon];
               return (
                 <motion.li key={service.slug} className="min-w-0" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ delay: idx * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                  <article className="group flex h-full min-w-0 flex-col rounded-md border border-white/12 bg-white/[0.035] p-6 transition-colors duration-300 hover:border-accent/45 hover:bg-white/[0.06] hover:shadow-[0_0_0_1px_rgba(220,193,108,0.2)] sm:p-7 md:p-8">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent transition-colors duration-300 group-hover:bg-accent/25">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  <article className="group flex h-full min-w-0 flex-col rounded-md border border-white/12 bg-white/[0.035] p-4 transition-colors duration-300 hover:border-accent/45 hover:bg-white/[0.06] hover:shadow-[0_0_0_1px_rgba(220,193,108,0.2)] sm:p-7 md:p-8">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent transition-colors duration-300 group-hover:bg-accent/25 sm:h-10 sm:w-10">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
                     </div>
-                    <h3 className="mt-5 font-display text-fluid-card-title font-medium text-white [text-wrap:balance] sm:mt-6">
+                    <h3 className="mt-4 font-display text-fluid-card-title font-medium text-white [text-wrap:balance] sm:mt-6">
                       {service.title}
                     </h3>
-                    <p className="mt-3 flex-1 text-fluid-body font-light text-white/55 [text-wrap:pretty]">
+                    <p className="mt-2 flex-1 text-fluid-body font-light text-white/55 line-clamp-3 [text-wrap:pretty] md:line-clamp-none sm:mt-3">
                       {service.description}
                     </p>
                     <SmartLink

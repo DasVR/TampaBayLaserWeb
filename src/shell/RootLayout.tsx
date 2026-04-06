@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
 import { CurtainProvider } from "@/shell/Curtain";
+import { MobileBookingBar } from "@/shell/MobileBookingBar";
 import { SiteFooter } from "@/shell/SiteFooter";
 import { SiteHeader } from "@/shell/SiteHeader";
 
@@ -35,6 +36,7 @@ export function RootLayout() {
           },
         }}
       />
+      <MobileBookingBar />
     </CurtainProvider>
   );
 }

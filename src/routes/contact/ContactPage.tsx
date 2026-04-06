@@ -81,9 +81,9 @@ export function ContactPage() {
       </section>
 
       <section className="py-section">
-        <div className="mx-auto grid min-w-0 max-w-6xl gap-10 px-page lg:grid-cols-2 lg:gap-12">
+        <div className="mx-auto grid min-w-0 max-w-6xl gap-10 px-page md:grid-cols-2 md:gap-12">
           <Reveal>
-            <div className="min-w-0 rounded-xl border border-[#e4e4e4] bg-white p-6 shadow-sm sm:p-8 md:p-10">
+            <div className="mx-auto min-w-0 w-full max-w-lg rounded-xl border border-[#e4e4e4] bg-white p-6 shadow-sm sm:p-8 md:mx-0 md:max-w-none md:p-10">
               <h2 className="font-display text-fluid-card-title font-medium text-ink sm:text-xl">Visit</h2>
               <ul className="mt-6 space-y-5 text-fluid-body font-light text-neutral-600">
                 <li className="flex min-w-0 gap-3">
@@ -127,7 +127,7 @@ export function ContactPage() {
           </Reveal>
 
           <motion.form
-            className="min-w-0 rounded-xl border border-[#e4e4e4] bg-section/50 p-6 sm:p-8 md:p-10"
+            className="mx-auto min-w-0 w-full max-w-lg rounded-xl border border-[#e4e4e4] bg-section/50 p-6 sm:p-8 md:mx-0 md:max-w-none md:p-10"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

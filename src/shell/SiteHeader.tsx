@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { CalendarDays, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { brand, navItems, paths } from "@/config/brand";
 import { cn } from "@/lib/cn";
@@ -83,9 +83,17 @@ export function SiteHeader() {
             >
               {brand.phoneDisplay}
             </a>
-            <motion.div className="shrink-0" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+            <motion.div className="hidden shrink-0 lg:block" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
               <BookLink className="inline-block max-w-[10.5rem] rounded-md bg-accent px-3 py-2.5 text-center text-fluid-caps font-bold uppercase leading-tight text-white shadow-lift sm:max-w-none sm:px-5 sm:py-2.5">
                 Book consultation
+              </BookLink>
+            </motion.div>
+            <motion.div className="shrink-0 lg:hidden" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <BookLink
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-accent text-white shadow-lift"
+                aria-label="Book consultation"
+              >
+                <CalendarDays className="h-5 w-5" strokeWidth={1.75} aria-hidden />
               </BookLink>
             </motion.div>
             <button
@@ -142,6 +150,19 @@ export function SiteHeader() {
                   </CurtainNavLink>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28 }}
+                className="mt-4"
+              >
+                <BookLink
+                  className="flex w-full items-center justify-center rounded-md bg-accent px-4 py-3.5 text-center text-fluid-caps font-bold uppercase tracking-[0.18em] text-white shadow-lift"
+                  onClick={() => setOpen(false)}
+                >
+                  Book consultation
+                </BookLink>
+              </motion.div>
               <motion.a
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
