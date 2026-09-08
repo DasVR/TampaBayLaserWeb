@@ -102,7 +102,7 @@ export function SiteHeader() {
             </motion.div>
             <button
               type="button"
-              className="rounded-md border border-ink/10 p-2 lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-ink/10 lg:hidden"
               aria-expanded={open}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}

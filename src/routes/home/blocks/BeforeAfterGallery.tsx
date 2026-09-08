@@ -94,6 +94,8 @@ export function BeforeAfterGallery() {
                               key={p.id}
                               beforeSrc={p.beforeSrc}
                               afterSrc={p.afterSrc}
+                              beforeAlt={`${o.title} results, before treatment at Tampa Bay Laser`}
+                              afterAlt={`${o.title} results, after treatment at Tampa Bay Laser`}
                               caption={p.caption}
                             />
                           ))}

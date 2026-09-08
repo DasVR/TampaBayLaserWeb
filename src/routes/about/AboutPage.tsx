@@ -32,7 +32,7 @@ export function AboutPage() {
       <section className="py-section">
         <div className="mx-auto grid min-w-0 max-w-6xl gap-12 px-page lg:grid-cols-2 lg:items-start lg:gap-14">
           <motion.div
-            className="aspect-[3/4] min-h-0 min-w-0 overflow-hidden rounded-sm bg-neutral-200"
+            className="aspect-[3/4] min-h-0 min-w-0 overflow-hidden rounded-sm bg-neutral-200 ring-1 ring-inset ring-black/10"
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -104,7 +104,7 @@ export function AboutPage() {
             {brand.owner.photos.gallery.map((photo, i) => (
               <motion.li
                 key={photo.src}
-                className="min-w-0 overflow-hidden rounded-sm bg-neutral-200"
+                className="min-w-0 overflow-hidden rounded-sm bg-neutral-200 ring-1 ring-inset ring-black/10"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

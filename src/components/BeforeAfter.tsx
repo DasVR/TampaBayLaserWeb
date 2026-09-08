@@ -16,6 +16,8 @@ const HALF_HIT = HIT_W / 2;
 type Props = {
   beforeSrc: string;
   afterSrc: string;
+  beforeAlt?: string;
+  afterAlt?: string;
   beforeLabel?: string;
   afterLabel?: string;
   caption?: string;
@@ -30,6 +32,8 @@ type Props = {
 export function BeforeAfter({
   beforeSrc,
   afterSrc,
+  beforeAlt = "Before treatment",
+  afterAlt = "After treatment",
   beforeLabel = "Before",
   afterLabel = "After",
   caption,
@@ -97,7 +101,7 @@ export function BeforeAfter({
       >
         <img
           src={afterSrc}
-          alt=""
+          alt={afterAlt}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
           decoding="async"
@@ -108,7 +112,7 @@ export function BeforeAfter({
         >
           <img
             src={beforeSrc}
-            alt=""
+            alt={beforeAlt}
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"

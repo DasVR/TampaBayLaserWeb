@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const SITE = "https://tampabaylaser.com";
+export const SITE = "https://tampabaylaser.com";
 const DEFAULT_TITLE =
   "Laser Hair Removal & Electrolysis | Tampa Bay Laser | Clearwater, FL";
 const DEFAULT_DESC =

@@ -58,6 +58,8 @@ export const paths = {
   blog: "/blog",
   events: "/events",
   contact: "/contact",
+  privacy: "/privacy",
+  terms: "/terms",
 } as const;
 
 export type AppPath = (typeof paths)[keyof typeof paths];
