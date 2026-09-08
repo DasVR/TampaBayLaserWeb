@@ -1,36 +1,54 @@
 /**
  * Tampa Bay Laser — single source of truth for content.
- * WordPress migration: map this object to ACF options, CPT fields, or wp_localize_script.
  */
 export const brand = {
   name: "Tampa Bay Laser",
   tagline:
     "Tampa Bay's premier laser hair removal and aesthetic clinic—woman-owned, expert-led, dedicated to your confidence since 2004.",
-  /** Primary clinic line — matches public-facing listings */
   phoneDisplay: "(727) 452-5345",
   phoneTel: "+17274525345",
-  email: "info@tampabaylaser.com",
+  email: "hello@tampabaylaser.com",
   address: {
-    line1: "3700 Ulmerton Road, Suite 205",
+    line1: "3700 Ulmerton Road, Suite 202",
     line2: "Clearwater, FL 33762",
   },
-  hours: [
-    "Mon–Tue: 11AM – 3:30PM",
-    "Wed–Fri: 11AM – 6PM",
-    "Sat: 10AM – 6PM",
-    "Sun: Closed",
-  ],
+  hours: ["By appointment only"] as const,
   est: "2004",
-  /** Primary market label for hero / copy */
   locality: "Tampa Bay, FL",
   reviewScore: "4.8",
   reviewCount: 68,
+  owner: {
+    name: "Hannah",
+    role: "Owner & CEO",
+    photos: {
+      primary: "/images/about/hannah-portrait.jpg",
+      gallery: [
+        {
+          src: "/images/about/hannah-portrait-2.jpg",
+          alt: "Hannah smiling indoors at home",
+        },
+        {
+          src: "/images/about/hannah-portrait-bw.jpg",
+          alt: "Hannah studio portrait in black and white",
+        },
+        {
+          src: "/images/about/hannah-lifestyle-1.jpg",
+          alt: "Hannah in aerial fitness wearing Tampa Bay Laser gear",
+        },
+        {
+          src: "/images/about/hannah-lifestyle-2.jpg",
+          alt: "Hannah mid-aerial pose in the studio",
+        },
+      ],
+    },
+  },
 } as const;
 
-/** External integrations — replace URLs in WP if the booking stack changes */
 export const integrations = {
   bookingUrl:
     "https://www.fresha.com/a/tampa-bay-laser-pinellas-park-10707-66th-street-north-zz71bwmp/booking?menu=true&dppub=true",
+  googleReviewsUrl:
+    "https://www.google.com/search?q=Tampa+Bay+Laser+Clearwater+reviews",
 } as const;
 
 export const paths = {
@@ -43,6 +61,14 @@ export const paths = {
 } as const;
 
 export type AppPath = (typeof paths)[keyof typeof paths];
+
+export function servicePath(slug: string) {
+  return `${paths.services}/${slug}` as const;
+}
+
+export function blogPath(slug: string) {
+  return `${paths.blog}/${slug}` as const;
+}
 
 export const navItems = [
   { label: "Services", to: paths.services },
@@ -120,7 +146,11 @@ export const offerings = [
   },
 ] as const;
 
-/** Demo imagery via picsum — swap for your HIPAA-compliant before/afters in WordPress. */
+/**
+ * Clinical before/after pairs.
+ * Add files under public/images/before-after/{slug}/ and register them here.
+ * Empty until real photos are provided — UI shows an honest empty state (no stock).
+ */
 export type BeforeAfterPair = {
   id: string;
   serviceSlug: string;
@@ -130,16 +160,11 @@ export type BeforeAfterPair = {
   caption: string;
 };
 
-export const beforeAfterGallery: BeforeAfterPair[] = offerings.flatMap((o) =>
-  [1, 2, 3].map((n) => ({
-    id: `${o.slug}-ex-${n}`,
-    serviceSlug: o.slug,
-    serviceTitle: o.title,
-    beforeSrc: `https://picsum.photos/seed/tbl-${o.slug}-b${n}/640/800`,
-    afterSrc: `https://picsum.photos/seed/tbl-${o.slug}-a${n}/640/800`,
-    caption: `${o.title} · example ${n} (illustrative)`,
-  })),
-);
+export const beforeAfterGallery: BeforeAfterPair[] = [];
+
+export function beforeAfterForService(slug: string): BeforeAfterPair[] {
+  return beforeAfterGallery.filter((p) => p.serviceSlug === slug);
+}
 
 export const pillars = [
   {
@@ -164,9 +189,6 @@ export const pillars = [
   },
 ] as const;
 
-/**
- * Short praise lines — replace with approved verbatim quotes from Google Business Profile for production/WP.
- */
 export const reviews = [
   {
     quote:

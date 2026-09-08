@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { brand, integrations, paths } from "@/config/brand";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { hapticImpact } from "@/lib/haptic";
 import { Reveal } from "@/motion/Reveal";
 import { BookLink } from "@/shell/BookLink";
@@ -11,6 +12,12 @@ import { SmartLink } from "@/shell/SmartLink";
 const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT ?? "";
 
 export function ContactPage() {
+  usePageMeta({
+    title: "Contact & Book | Tampa Bay Laser | Clearwater, FL",
+    description: `Visit ${brand.address.line1}, ${brand.address.line2}. Call ${brand.phoneDisplay} or email ${brand.email}. By appointment only.`,
+    path: "/contact",
+  });
+
   const [submitting, setSubmitting] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -138,8 +145,8 @@ export function ContactPage() {
           >
             <h2 className="font-display text-fluid-card-title font-medium text-ink sm:text-xl">Send a note</h2>
             <p className="mt-2 text-fluid-body text-neutral-600 [text-wrap:pretty]">
-              Messages go to our inbox via Formspree. In WordPress, point this form action to WPForms,
-              Gravity Forms, or the same endpoint.
+              We read every message and reply as soon as we can. Prefer to call? Use the number on the
+              left—or book online anytime.
             </p>
 
             <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden />

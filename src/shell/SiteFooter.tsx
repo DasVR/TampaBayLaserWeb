@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import { brand, navItems, offerings, paths } from "@/config/brand";
+import { brand, navItems, offerings, servicePath } from "@/config/brand";
 import { SmartLink } from "@/shell/SmartLink";
 
 const legal = [
@@ -53,7 +53,7 @@ export function SiteFooter() {
             {offerings.map((s) => (
               <li key={s.slug} className="min-w-0 break-words">
                 <SmartLink
-                  to={paths.services}
+                  to={servicePath(s.slug)}
                   className="text-fluid-body font-light text-white/65 transition-colors hover:text-white"
                 >
                   {s.title}

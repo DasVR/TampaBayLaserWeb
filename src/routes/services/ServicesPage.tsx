@@ -1,11 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { offerings } from "@/config/brand";
+import { offerings, servicePath } from "@/config/brand";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { offeringIcons } from "@/lib/icons";
 import { Reveal } from "@/motion/Reveal";
-import { BookLink } from "@/shell/BookLink";
+import { SmartLink } from "@/shell/SmartLink";
 
 export function ServicesPage() {
+  usePageMeta({
+    title: "Laser, Electrolysis & Aesthetics Services | Tampa Bay Laser",
+    description:
+      "Explore laser hair removal, electrolysis, facials, resurfacing, spray tan, and KeraLase in Clearwater. Pricing ranges and free consultations.",
+    path: "/services",
+  });
+
   return (
     <main id="main" className="min-w-0 bg-cream">
       <section className="border-b border-[#e4e4e4] bg-section py-section">
@@ -16,8 +24,8 @@ export function ServicesPage() {
               Everything we <em className="italic text-accent">do</em>, under one roof.
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
-              Explore each modality—then book a free consult so we can map a
-              plan to your skin, schedule, and comfort level.
+              Open any treatment for pre- and post-care, what to expect, and pricing—then book a free
+              consult when you’re ready.
             </p>
           </Reveal>
         </div>
@@ -49,13 +57,13 @@ export function ServicesPage() {
                   <p className="mt-3 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
                     {s.description}
                   </p>
-                  <p className="mt-4 text-[clamp(0.75rem,0.7rem+0.2vw,0.875rem)] font-light leading-snug text-neutral-500 [text-wrap:pretty]">
-                    Final pricing confirmed at your complimentary consultation—no surprises.
-                  </p>
-                  <BookLink className="mt-6 inline-flex min-w-0 items-center gap-2 text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent [text-wrap:balance]">
-                    Book this treatment
+                  <SmartLink
+                    to={servicePath(s.slug)}
+                    className="mt-6 inline-flex min-w-0 items-center gap-2 text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent [text-wrap:balance]"
+                  >
+                    View details &amp; care instructions
                     <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  </BookLink>
+                  </SmartLink>
                 </div>
               </motion.article>
             );

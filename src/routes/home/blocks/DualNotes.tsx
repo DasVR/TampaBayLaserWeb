@@ -1,7 +1,10 @@
-import { paths } from "@/config/brand";
+import { blogPath, paths } from "@/config/brand";
+import { getRecentPosts } from "@/content/blog";
 import { SmartLink } from "@/shell/SmartLink";
 
 export function DualNotes() {
+  const posts = getRecentPosts(3);
+
   return (
     <section
       className="border-t border-[#e4e4e4] bg-section py-section"
@@ -13,10 +16,21 @@ export function DualNotes() {
           <h2 className="mt-5 font-display text-fluid-subhead font-medium tracking-[-0.02em] text-ink [text-wrap:balance]">
             Skin education, on your terms
           </h2>
-          <p className="mt-5 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
-            Honest FAQs, pre-care checklists, and treatment explainers—swap this
-            block for a WordPress posts loop when you publish.
-          </p>
+          <ul className="mt-6 space-y-4">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <SmartLink
+                  to={blogPath(post.slug)}
+                  className="group block min-w-0 rounded-md border border-transparent py-1 transition-colors hover:border-[#e4e4e4] hover:bg-cream/80"
+                >
+                  <p className="text-fluid-caps font-bold uppercase text-accent">{post.dateLabel}</p>
+                  <p className="mt-1 font-display text-fluid-body font-medium text-ink group-hover:text-accent [text-wrap:pretty]">
+                    {post.title}
+                  </p>
+                </SmartLink>
+              </li>
+            ))}
+          </ul>
           <SmartLink
             to={paths.blog}
             className="mt-6 inline-flex text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent underline-offset-8 hover:underline"
@@ -30,8 +44,8 @@ export function DualNotes() {
             Open houses &amp; specials
           </h2>
           <p className="mt-5 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
-            Seasonal events and Q&amp;A nights post here first—embed your
-            calendar plugin without changing this layout grid.
+            We host seasonal specials and community Q&amp;As by appointment. Follow us on Instagram
+            or get in touch to hear about the next date.
           </p>
           <SmartLink
             to={paths.events}
