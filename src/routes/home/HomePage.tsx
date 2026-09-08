@@ -8,8 +8,11 @@ import { FAQAccordion } from "@/routes/home/blocks/FAQAccordion";
 import { ReviewsWall } from "@/routes/home/blocks/ReviewsWall";
 import { DualNotes } from "@/routes/home/blocks/DualNotes";
 import { ClosingCTA } from "@/routes/home/blocks/ClosingCTA";
+import { usePageMeta, defaultPageMeta } from "@/hooks/usePageMeta";
 
 export function HomePage() {
+  usePageMeta({ ...defaultPageMeta, path: "/" });
+
   return (
     <main id="main" className="min-w-0">
       <HeroSplit />

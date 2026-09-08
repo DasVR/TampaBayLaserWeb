@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { offerings, paths } from "@/config/brand";
+import { offerings, servicePath } from "@/config/brand";
 import { usePageHydrated } from "@/hooks/usePageHydrated";
 import { offeringIcons } from "@/lib/icons";
 import { Reveal } from "@/motion/Reveal";
@@ -77,8 +77,11 @@ export function ServicesPreview() {
                     <p className="mt-3 flex-1 text-fluid-body font-light text-white/55 line-clamp-3 [text-wrap:pretty] md:line-clamp-none sm:mt-4">
                       {service.description}
                     </p>
+                    <p className="mt-3 text-fluid-caps font-medium uppercase tracking-[0.12em] text-accent/90 line-clamp-2 sm:mt-4">
+                      {service.pricing}
+                    </p>
                     <SmartLink
-                      to={paths.services}
+                      to={servicePath(service.slug)}
                       className="mt-6 inline-flex min-w-0 items-center gap-1.5 text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-85 sm:mt-8"
                     >
                       Learn more

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { ExternalLink, Quote, Star } from "lucide-react";
 import { useState } from "react";
-import { brand, reviews } from "@/config/brand";
+import { brand, integrations, reviews } from "@/config/brand";
 import { usePageHydrated } from "@/hooks/usePageHydrated";
 import { Reveal } from "@/motion/Reveal";
 
@@ -40,13 +40,16 @@ export function ReviewsWall() {
       <div className="mx-auto min-w-0 max-w-6xl px-page">
         <div className="flex min-w-0 flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <Reveal className="min-w-0">
-            <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">Client love</p>
+            <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">Testimonials</p>
             <h2
               id="reviews-heading"
               className="mt-6 max-w-xl font-display text-fluid-section font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
             >
               Trusted by <em className="text-[1.02em] italic text-accent">thousands</em>
             </h2>
+            <p className="mt-4 max-w-lg text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
+              Real words from clients who value clear education, consistency, and calm care.
+            </p>
           </Reveal>
           <motion.div
             className="shrink-0 text-center lg:text-right"
@@ -69,6 +72,15 @@ export function ReviewsWall() {
             <p className="mt-3 text-fluid-body font-medium text-neutral-500 [text-wrap:balance]">
               Based on {brand.reviewCount} Google reviews
             </p>
+            <a
+              href={integrations.googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-fluid-caps font-bold uppercase tracking-[0.18em] text-accent underline-offset-8 hover:underline"
+            >
+              Read Google reviews
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+            </a>
           </motion.div>
         </div>
 

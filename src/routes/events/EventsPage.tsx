@@ -1,10 +1,18 @@
 import { motion } from "framer-motion";
 import { CalendarClock } from "lucide-react";
 import { paths } from "@/config/brand";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Reveal } from "@/motion/Reveal";
 import { SmartLink } from "@/shell/SmartLink";
 
 export function EventsPage() {
+  usePageMeta({
+    title: "Events & Specials | Tampa Bay Laser | Clearwater",
+    description:
+      "Seasonal specials and open houses at Tampa Bay Laser—by appointment. Follow Instagram or contact us for the next date.",
+    path: "/events",
+  });
+
   return (
     <main id="main" className="min-h-[60vh] min-w-0 bg-cream">
       <section className="border-b border-[#e4e4e4] bg-section py-section">
@@ -15,8 +23,8 @@ export function EventsPage() {
               On-site nights &amp; <em className="italic text-accent">open houses</em>.
             </h1>
             <p className="mt-6 text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
-              Seasonal specials and community Q&amp;As publish here—drop in The
-              Events Calendar shortcode or block without redesigning this page.
+              Seasonal specials and community Q&amp;As are offered by appointment. Follow along on
+              Instagram or reach out so we can notify you about the next date.
             </p>
           </Reveal>
         </div>
@@ -31,9 +39,11 @@ export function EventsPage() {
           transition={{ duration: 0.5 }}
         >
           <CalendarClock className="h-10 w-10 shrink-0 text-accent" strokeWidth={1.25} />
-          <p className="mt-6 font-display text-fluid-subhead text-ink [text-wrap:balance]">Nothing scheduled just yet</p>
+          <p className="mt-6 font-display text-fluid-subhead text-ink [text-wrap:balance]">
+            Nothing scheduled just yet
+          </p>
           <p className="mt-2 text-fluid-body text-neutral-600 [text-wrap:pretty]">
-            Join the newsletter or follow along on Instagram for the next date.
+            Appointments are available anytime—ask us about current specials when you book.
           </p>
           <SmartLink
             to={paths.contact}

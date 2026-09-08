@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { Reveal } from "@/motion/Reveal";
 
 export function FAQAccordion() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section className="bg-section py-section" aria-labelledby="faq-heading">
@@ -20,7 +20,7 @@ export function FAQAccordion() {
             Questions we <em className="italic text-accent">love</em> to answer
           </h2>
           <p className="mt-6 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
-            Straight answers—no filler. One section open at a time.
+            Straight answers—no filler.
           </p>
         </Reveal>
 
@@ -32,6 +32,8 @@ export function FAQAccordion() {
                 <button
                   type="button"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${i}`}
+                  id={`faq-button-${i}`}
                   className="flex w-full min-w-0 items-start justify-between gap-3 px-4 py-3.5 text-left sm:px-6 sm:py-5"
                   onClick={() => setOpen(isOpen ? null : i)}
                 >
@@ -47,21 +49,27 @@ export function FAQAccordion() {
                     aria-hidden
                   />
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="border-t border-[#e4e4e4] px-4 pb-4 pt-3 text-fluid-body font-light text-neutral-600 [text-wrap:pretty] sm:px-6 sm:pb-6 sm:pt-4">
-                        {item.a}
-                      </p>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
+                {/* Answers stay in the DOM for crawlers; motion only toggles visibility. */}
+                <div id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-button-${i}`}>
+                  <AnimatePresence initial={false}>
+                    {isOpen ? (
+                      <motion.div
+                        key="open"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="border-t border-[#e4e4e4] px-4 pb-4 pt-3 text-fluid-body font-light text-neutral-600 [text-wrap:pretty] sm:px-6 sm:pb-6 sm:pt-4">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    ) : (
+                      <p className="sr-only">{item.a}</p>
+                    )}
+                  </AnimatePresence>
+                </div>
               </li>
             );
           })}

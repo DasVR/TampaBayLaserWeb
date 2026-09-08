@@ -9,25 +9,43 @@ export function HeroSplit() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="grid min-w-0 grid-cols-1 overflow-hidden lg:min-h-[min(92vh,56rem)] lg:grid-cols-2"
+      className="relative min-w-0 overflow-hidden"
     >
-      {/* Copy: second on mobile, left column on lg */}
-      <div className="relative order-2 flex min-w-0 flex-col justify-between bg-gradient-to-br from-[#2f2f2f] via-charcoal to-[#1a1a1a] px-page py-hero text-white lg:order-1 md:px-page lg:px-[clamp(1.25rem,0.75rem+2vw,3.5rem)] lg:py-[clamp(3.5rem,2.5rem+3vw,6rem)]">
-        <motion.div
-          className="pointer-events-none absolute left-0 top-0 h-[min(420px,55%)] w-[min(420px,85%)] bg-[radial-gradient(ellipse_at_30%_20%,rgba(220,193,108,0.2)_0%,transparent_62%)]"
-          aria-hidden
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <div className="relative min-w-0">
-          <p className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fluid-caps font-bold uppercase text-accent sm:mb-8">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2a2a2a] via-charcoal to-[#121212]" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 80% 60% at 70% 20%, rgba(220,193,108,0.28), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 90%, rgba(220,193,108,0.12), transparent 50%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+        aria-hidden
+      />
+
+      <div className="relative mx-auto flex min-h-[min(92vh,52rem)] max-w-6xl flex-col justify-between px-page py-hero text-white md:py-[clamp(4rem,3rem+4vw,7rem)]">
+        <div className="min-w-0 max-w-3xl pt-4 md:pt-8">
+          <motion.p
+            className="mb-6 font-display text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-semibold uppercase tracking-[0.14em] text-accent sm:mb-8"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            {brand.name}
+          </motion.p>
+          <p className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fluid-caps font-bold uppercase text-white/55 sm:mb-8">
             <motion.span
               className="h-px w-8 shrink-0 bg-accent sm:w-10"
               aria-hidden
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               style={{ originX: 0 }}
             />
             <span className="min-w-0 break-words">
@@ -36,16 +54,15 @@ export function HeroSplit() {
           </p>
           <h1
             id="hero-heading"
-            className="font-display max-w-[min(100%,36rem)] text-balance text-fluid-hero font-medium text-white break-words"
+            className="font-display max-w-[min(100%,38rem)] text-balance text-fluid-hero font-medium text-white break-words"
           >
             Confidence begins with{" "}
             <em className="text-[1.02em] font-medium italic text-accent">flawless</em>{" "}
             skin.
           </h1>
-          <p className="mt-6 max-w-lg text-fluid-body-lg font-light text-white/75 sm:mt-8 md:max-w-xl">
-            For over two decades, {brand.name} has paired medical-grade treatments with
-            unhurried, one-on-one care—so every visit feels clear, calm, and completely
-            yours.
+          <p className="mt-6 max-w-xl text-fluid-body-lg font-light text-white/75 sm:mt-8">
+            Medical-grade laser hair removal, electrolysis, and aesthetics—with
+            unhurried, one-on-one care since {brand.est}.
           </p>
           <div className="mt-10 flex min-w-0 flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5">
             <motion.div className="min-w-0 sm:shrink-0" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>
@@ -64,7 +81,7 @@ export function HeroSplit() {
           </div>
         </div>
 
-        <dl className="relative mt-12 grid min-w-0 grid-cols-3 gap-0 border-t border-white/12 pt-8 text-center sm:mt-16 sm:pt-10">
+        <dl className="relative mt-14 grid min-w-0 grid-cols-3 gap-0 border-t border-white/12 pt-8 text-center sm:mt-16 sm:max-w-2xl sm:pt-10 sm:text-left">
           {(
             [
               { k: "Treatments performed", kMobile: "Treatments" as const, v: "200K+" },
@@ -102,44 +119,6 @@ export function HeroSplit() {
             </div>
           ))}
         </dl>
-      </div>
-
-      {/* Portrait: first on mobile, right column on lg */}
-      <div className="relative order-1 min-h-[min(22rem,65vh)] min-w-0 bg-neutral-950 sm:min-h-[22rem] lg:order-2 lg:min-h-0">
-        <motion.img
-          src="/images/hero-portrait.jpg"
-          alt="Hannah, owner and CEO of Tampa Bay Laser"
-          className="h-full w-full object-cover object-center"
-          width={370}
-          height={540}
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
-          initial={{ scale: 1.06, filter: "brightness(0.92)" }}
-          animate={{ scale: 1, filter: "brightness(1)" }}
-          transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <div className="pointer-events-none absolute right-4 top-4 hidden flex-col gap-2 md:right-6 md:top-6 md:flex">
-          {["Google reviews", "200K+ treatments done"].map((label) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.45, duration: 0.45 }}
-              className="max-w-[12rem] rounded-md border border-white/15 bg-white/[0.97] px-3 py-2.5 text-fluid-caps-tight font-bold uppercase text-ink shadow-card backdrop-blur-sm md:max-w-none md:px-4 md:py-3"
-            >
-              <span className="text-pretty">{label}</span>
-            </motion.div>
-          ))}
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal via-charcoal/75 to-transparent px-page pb-6 pt-20 sm:pb-8 sm:pt-24 md:px-8 md:pb-10">
-          <p className="font-display text-fluid-stat font-medium text-white md:text-[clamp(1.75rem,1.2rem+1.5vw,2.25rem)]">
-            Hannah
-          </p>
-          <p className="mt-2 text-fluid-caps font-bold uppercase tracking-[0.28em] text-white/70 [text-wrap:balance]">
-            Owner &amp; CEO · {brand.name}
-          </p>
-        </div>
       </div>
     </section>
   );
