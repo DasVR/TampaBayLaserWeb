@@ -5,6 +5,44 @@ import { cn } from "@/lib/cn";
 import { BookLink } from "@/shell/BookLink";
 import { SmartLink } from "@/shell/SmartLink";
 
+function HeroMark() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] max-w-[38rem] overflow-hidden lg:block"
+      aria-hidden
+    >
+      <span
+        className="absolute -right-[0.12em] bottom-[-0.14em] select-none font-display text-[42rem] font-medium leading-none text-white/[0.045]"
+        style={{ fontStyle: "normal" }}
+      >
+        T
+      </span>
+      <svg
+        viewBox="0 0 560 560"
+        className="absolute right-[6%] top-1/2 h-[62%] w-auto -translate-y-1/2 opacity-80"
+      >
+        {[64, 118, 172, 226].map((r) => (
+          <circle
+            key={r}
+            cx="420"
+            cy="220"
+            r={r}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-accent/[0.22]"
+          />
+        ))}
+        <line x1="420" y1="20" x2="420" y2="82" stroke="currentColor" strokeWidth="1" className="text-accent/30" />
+        <line x1="420" y1="358" x2="420" y2="420" stroke="currentColor" strokeWidth="1" className="text-accent/30" />
+        <line x1="192" y1="220" x2="254" y2="220" stroke="currentColor" strokeWidth="1" className="text-accent/30" />
+        <line x1="530" y1="220" x2="592" y2="220" stroke="currentColor" strokeWidth="1" className="text-accent/30" />
+        <circle cx="420" cy="220" r="4.5" fill="currentColor" className="text-accent" />
+      </svg>
+    </div>
+  );
+}
+
 export function HeroSplit() {
   return (
     <section
@@ -28,6 +66,8 @@ export function HeroSplit() {
         }}
         aria-hidden
       />
+
+      <HeroMark />
 
       <div className="relative mx-auto flex min-h-[min(92vh,52rem)] max-w-6xl flex-col justify-between px-page py-hero text-white md:py-[clamp(4rem,3rem+4vw,7rem)]">
         <div className="min-w-0 max-w-3xl pt-4 md:pt-8">
