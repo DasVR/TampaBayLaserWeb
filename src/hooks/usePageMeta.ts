@@ -5,7 +5,7 @@ const SITE = "https://tampabaylaser.com";
 const DEFAULT_TITLE =
   "Laser Hair Removal & Electrolysis | Tampa Bay Laser | Clearwater, FL";
 const DEFAULT_DESC =
-  "Tampa Bay Laser — laser hair removal, electrolysis, and aesthetics in Clearwater / Tampa Bay, FL. Woman-owned, complimentary consultations. Est. 2004.";
+  "Tampa Bay Laser — laser hair removal, electrolysis, and aesthetics in Clearwater / Tampa Bay, FL. Woman-owned, complimentary consultations. Est. 2006.";
 
 export type PageMeta = {
   title?: string;

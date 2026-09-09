@@ -7,7 +7,7 @@ import { BookLink } from "@/shell/BookLink";
 export function AboutPage() {
   usePageMeta({
     title: `About Hannah | ${brand.name} | Clearwater, FL`,
-    description: `Meet Hannah, owner and CEO of ${brand.name}—a woman-owned laser and aesthetics clinic serving Tampa Bay since ${brand.est}.`,
+    description: `Meet Hannah, owner and CEO of ${brand.name}—a woman-owned laser and aesthetics clinic serving Tampa Bay since ${brand.experienceSince}.`,
     path: "/about",
   });
 
@@ -63,7 +63,7 @@ export function AboutPage() {
                 stranger mid-plan.
               </p>
               <p>
-                Since {brand.est}, the clinic has stayed intentionally small:
+                Since {brand.foundedYear}, the clinic has stayed intentionally small:
                 woman-owned, education-first, and built around the same
                 specialist seeing you through your goals. That continuity is how
                 we remember your settings, your comfort cues, and what “done”

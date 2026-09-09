@@ -89,7 +89,7 @@ export function HeroSplit() {
               style={{ originX: 0 }}
             />
             <span className="min-w-0 break-words">
-              {brand.locality} — Est. {brand.est}
+              {brand.locality} — Est. {brand.experienceSince}
             </span>
           </p>
           <h1
@@ -102,7 +102,7 @@ export function HeroSplit() {
           </h1>
           <p className="mt-6 max-w-xl text-fluid-body-lg font-light text-white/75 sm:mt-8">
             Medical-grade laser hair removal, electrolysis, and aesthetics—with
-            unhurried, one-on-one care since {brand.est}.
+            unhurried, one-on-one care since {brand.experienceSince}.
           </p>
           <div className="mt-10 flex min-w-0 flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5">
             <motion.div className="min-w-0 sm:shrink-0" whileHover={{ y: -2 }} whileTap={{ scale: 0.99 }}>

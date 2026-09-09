@@ -4,7 +4,7 @@
 export const brand = {
   name: "Tampa Bay Laser",
   tagline:
-    "Tampa Bay's premier laser hair removal and aesthetic clinic—woman-owned, expert-led, dedicated to your confidence since 2004.",
+    "Tampa Bay's premier laser hair removal and aesthetic clinic—woman-owned, expert-led, dedicated to your confidence since 2006.",
   phoneDisplay: "(727) 452-5345",
   phoneTel: "+17274525345",
   email: "hello@tampabaylaser.com",
@@ -13,7 +13,10 @@ export const brand = {
     line2: "Clearwater, FL 33762",
   },
   hours: ["By appointment only"] as const,
-  est: "2004",
+  /** Hannah's professional experience in the field—used for "20+ years" framing. */
+  experienceSince: "2006",
+  /** Legal founding year of the business itself—distinct from experienceSince. */
+  foundedYear: "2021",
   locality: "Tampa Bay, FL",
   reviewScore: "4.8",
   reviewCount: 68,
@@ -102,7 +105,7 @@ export const offerings = [
     description:
       "The only FDA-approved permanent hair removal method—for every skin type, hair color, and texture including blonde, red, and gray.",
     icon: "activity" as const,
-    pricing: "From $70 per 15 min · full plan priced after consultation",
+    pricing: "From $75 per 15 min · full plan priced after consultation",
   },
   {
     title: "Spray Tan",
