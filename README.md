@@ -22,12 +22,12 @@ Pushing to `main` runs `.github/workflows/deploy.yml` (build + FTPS upload).
 
 Add these **GitHub Actions secrets** (never commit passwords):
 
-| Secret | Example |
+| Secret | Value |
 | --- | --- |
-| `FTP_SERVER` | Namecheap FTP host or server IP |
-| `FTP_USERNAME` | Dedicated FTP deploy user |
-| `FTP_PASSWORD` | FTP password (rotate if shared in chat) |
-| `FTP_SERVER_DIR` | `/public_html/` |
-| `FTP_PORT` | `21` (optional) |
+| `FTP_SERVER` | `server309-4.web-hosting.com` (preferred) or `66.29.141.5` — **not** `ftp.tampabaylaser.com` until that DNS record exists |
+| `FTP_USERNAME` | `github@tampabaylaser.com` |
+| `FTP_PASSWORD` | FTP password for that account |
+
+Do **not** create `FTP_SERVER_DIR` as `/` — GitHub masks every `/` in logs. The workflow uploads to `/` (the FTP account home folder) automatically.
 
 `public/.htaccess` ships in `dist/` so React Router paths work on Apache.

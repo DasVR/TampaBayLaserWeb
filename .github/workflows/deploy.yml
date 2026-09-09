@@ -24,6 +24,29 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Do not store "/" as FTP_SERVER_DIR — GitHub redacts every "/" in logs.
+      # FTP account home is already the deploy folder, so upload to root "/".
+      - name: Check FTP host DNS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          set -euo pipefail
+          if [ -z "${FTP_SERVER:-}" ]; then
+            echo "::error::FTP_SERVER secret is empty. Set it to server309-4.web-hosting.com (or 66.29.141.5)."
+            exit 1
+          fi
+          # Strip accidental scheme/whitespace without printing the value
+          HOST=$(printf '%s' "$FTP_SERVER" | tr -d '[:space:]' | sed -E 's#^ftps?://##I')
+          if getent hosts "$HOST" >/dev/null; then
+            echo "FTP host DNS lookup OK"
+          else
+            echo "::error::FTP_SERVER does not resolve in DNS (ENOTFOUND)."
+            echo "ftp.tampabaylaser.com currently has no DNS record."
+            echo "Set FTP_SERVER to: server309-4.web-hosting.com   (recommended)"
+            echo "Or the server IP: 66.29.141.5"
+            exit 1
+          fi
+
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -33,7 +56,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: /
           dangerous-clean-slate: false
           exclude: |
             **/.git*
