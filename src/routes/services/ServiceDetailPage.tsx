@@ -1,9 +1,10 @@
 import { ArrowRight, Check } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { beforeAfterForService, paths, servicePath } from "@/config/brand";
+import { beforeAfterForService, brand, paths, servicePath } from "@/config/brand";
 import { getOffering, getServiceDetail } from "@/content/services";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { offeringIcons } from "@/lib/icons";
 import { Reveal } from "@/motion/Reveal";
 import { BookLink } from "@/shell/BookLink";
@@ -23,6 +24,43 @@ export function ServiceDetailPage() {
       : undefined,
     path: offering ? servicePath(offering.slug) : paths.services,
   });
+
+  usePageSchema(
+    "schema-service-detail",
+    offering && detail
+      ? {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": `${SITE}${servicePath(offering.slug)}#service`,
+              name: offering.title,
+              description: offering.description,
+              url: `${SITE}${servicePath(offering.slug)}`,
+              provider: { "@id": `${SITE}/#business` },
+              areaServed: brand.locality,
+              offers: {
+                "@type": "Offer",
+                priceSpecification: offering.pricing,
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+                { "@type": "ListItem", position: 2, name: "Services", item: `${SITE}${paths.services}` },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: offering.title,
+                  item: `${SITE}${servicePath(offering.slug)}`,
+                },
+              ],
+            },
+          ],
+        }
+      : null,
+  );
 
   if (!offering || !detail) {
     return <Navigate to={paths.services} replace />;
@@ -153,6 +191,8 @@ export function ServiceDetailPage() {
                   key={p.id}
                   beforeSrc={p.beforeSrc}
                   afterSrc={p.afterSrc}
+                  beforeAlt={`${offering.title} results, before treatment at Tampa Bay Laser`}
+                  afterAlt={`${offering.title} results, after treatment at Tampa Bay Laser`}
                   caption={p.caption}
                 />
               ))}

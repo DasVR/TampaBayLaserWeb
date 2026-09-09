@@ -1,11 +1,11 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import { brand, navItems, offerings, servicePath } from "@/config/brand";
+import { brand, navItems, offerings, paths, servicePath } from "@/config/brand";
 import { SmartLink } from "@/shell/SmartLink";
 
 const legal = [
-  { label: "Privacy", to: "#privacy" },
-  { label: "Terms", to: "#terms" },
+  { label: "Privacy", to: paths.privacy },
+  { label: "Terms", to: paths.terms },
   { label: "Sitemap", to: "/sitemap.xml" },
 ] as const;
 
@@ -123,11 +123,17 @@ export function SiteFooter() {
           © {new Date().getFullYear()} {brand.name}. All rights reserved.
         </p>
         <nav aria-label="Legal" className="flex flex-wrap justify-center gap-6 md:gap-8">
-          {legal.map((x) => (
-            <a key={x.label} href={x.to} className="shrink-0 transition-colors hover:text-white">
-              {x.label}
-            </a>
-          ))}
+          {legal.map((x) =>
+            x.to.startsWith("/sitemap") ? (
+              <a key={x.label} href={x.to} className="shrink-0 transition-colors hover:text-white">
+                {x.label}
+              </a>
+            ) : (
+              <SmartLink key={x.label} to={x.to} className="shrink-0 transition-colors hover:text-white">
+                {x.label}
+              </SmartLink>
+            ),
+          )}
         </nav>
       </div>
     </footer>

@@ -6,6 +6,8 @@ import { BlogPostPage } from "@/routes/blog/BlogPostPage";
 import { ContactPage } from "@/routes/contact/ContactPage";
 import { EventsPage } from "@/routes/events/EventsPage";
 import { HomePage } from "@/routes/home/HomePage";
+import { PrivacyPage } from "@/routes/legal/PrivacyPage";
+import { TermsPage } from "@/routes/legal/TermsPage";
 import { ServiceDetailPage } from "@/routes/services/ServiceDetailPage";
 import { ServicesPage } from "@/routes/services/ServicesPage";
 
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="blog/:slug" element={<BlogPostPage />} />
         <Route path="events" element={<EventsPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="terms" element={<TermsPage />} />
       </Route>
     </Routes>
   );
