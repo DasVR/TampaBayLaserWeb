@@ -30,7 +30,7 @@ export function BeforeAfterGallery() {
             id="ba-heading"
             className="mt-6 max-w-[min(100%,48rem)] font-display text-fluid-section font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
           >
-            Before &amp; <em className="text-[1.02em] italic text-accent">after</em>
+            Before &amp; <em className="text-[1.02em] font-semibold not-italic text-accent">after</em>
           </h2>
           <p className="mt-6 max-w-2xl text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
             {hasAny

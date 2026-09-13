@@ -45,7 +45,7 @@ export function ReviewsWall() {
               id="reviews-heading"
               className="mt-6 max-w-xl font-display text-fluid-section font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
             >
-              Trusted by <em className="text-[1.02em] italic text-accent">thousands</em>
+              What <em className="text-[1.02em] font-semibold not-italic text-accent">clients</em> say
             </h2>
             <p className="mt-4 max-w-lg text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
               Real words from clients who value clear education, consistency, and calm care.

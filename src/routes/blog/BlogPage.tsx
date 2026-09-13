@@ -48,7 +48,7 @@ export function BlogPage() {
           <Reveal>
             <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">Blog</p>
             <h1 className="mt-6 font-display text-fluid-page-title font-medium tracking-[-0.02em] text-ink [text-wrap:balance]">
-              Straight talk on <em className="italic text-accent">skin</em>.
+              Straight talk on <em className="font-semibold not-italic text-accent">skin</em>.
             </h1>
             <p className="mt-6 text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
               Articles, FAQs, and after-care notes from the Tampa Bay Laser team—updated about once a

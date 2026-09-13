@@ -83,7 +83,7 @@ export function ContactPage() {
           <Reveal>
             <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">Contact</p>
             <h1 className="mt-6 font-display text-fluid-page-title font-medium tracking-[-0.02em] text-ink [text-wrap:balance]">
-              Let’s plan your <em className="italic text-accent">first visit</em>.
+              Let’s plan your <em className="font-semibold not-italic text-accent">first visit</em>.
             </h1>
             <p className="mt-6 text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
               Complimentary consultation—bring your questions; we’ll map honest

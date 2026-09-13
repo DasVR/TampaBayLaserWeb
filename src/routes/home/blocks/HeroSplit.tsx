@@ -97,7 +97,7 @@ export function HeroSplit() {
             className="font-display max-w-[min(100%,38rem)] text-balance text-fluid-hero font-medium text-white break-words"
           >
             Confidence begins with{" "}
-            <em className="text-[1.02em] font-medium italic text-accent">flawless</em>{" "}
+            <em className="text-[1.02em] font-semibold not-italic text-accent">flawless</em>{" "}
             skin.
           </h1>
           <p className="mt-6 max-w-xl text-fluid-body-lg font-light text-white/75 sm:mt-8">

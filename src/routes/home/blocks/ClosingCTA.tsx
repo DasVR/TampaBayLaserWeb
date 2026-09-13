@@ -23,7 +23,7 @@ export function ClosingCTA() {
           id="cta-heading"
           className="mt-6 font-display text-fluid-section-lg font-medium tracking-[-0.02em] [text-wrap:balance] sm:mt-8"
         >
-          Your journey to <em className="text-[1.02em] italic text-accent">radiance</em> starts here
+          Your journey to <em className="text-[1.02em] font-semibold not-italic text-accent">radiance</em> starts here
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-fluid-body-lg font-light text-white/72 [text-wrap:pretty] sm:mt-8">
           Complimentary consultation. Transparent plans. Specialists who remember your name.

@@ -44,7 +44,7 @@ export function ServicesPage() {
           <Reveal>
             <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">Services / pricing</p>
             <h1 className="mt-6 font-display text-fluid-page-title font-medium tracking-[-0.02em] text-ink [text-wrap:balance]">
-              Everything we <em className="italic text-accent">do</em>, under one roof.
+              Everything we <em className="font-semibold not-italic text-accent">do</em>, under one roof.
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
               Open any treatment for pre- and post-care, what to expect, and pricing—then book a free
