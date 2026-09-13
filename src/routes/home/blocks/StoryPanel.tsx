@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { brand, paths } from "@/config/brand";
 import { Reveal } from "@/motion/Reveal";
@@ -17,7 +16,7 @@ export function StoryPanel() {
             id="story-heading"
             className="max-w-xl font-display text-fluid-section-lg font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
           >
-            A clinic built on <em className="text-[1.04em] italic text-accent">expertise</em>{" "}
+            A clinic built on <em className="text-[1.04em] font-semibold not-italic text-accent">expertise</em>{" "}
             and care.
           </h2>
           <div className="mt-8 max-w-2xl space-y-5 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
@@ -37,7 +36,6 @@ export function StoryPanel() {
               className="inline-flex min-w-0 items-center gap-2 rounded-md bg-ink px-6 py-3.5 text-fluid-caps font-bold uppercase leading-snug tracking-[0.18em] text-white shadow-lift hover:bg-charcoal sm:px-7 sm:py-4"
             >
               Meet Hannah
-              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden strokeWidth={2.25} />
             </SmartLink>
           </motion.div>
         </Reveal>

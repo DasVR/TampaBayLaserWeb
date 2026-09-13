@@ -29,7 +29,7 @@ export function AboutPage() {
           <Reveal>
             <p className="text-fluid-eyebrow font-bold uppercase text-neutral-500">About</p>
             <h1 className="mt-6 font-display text-fluid-page-title font-medium leading-[1.06] tracking-[-0.02em] text-ink [text-wrap:balance]">
-              Led by <em className="italic text-accent">{brand.owner.name}</em>—built for trust.
+              Led by <em className="font-semibold not-italic text-accent">{brand.owner.name}</em>, built for trust.
             </h1>
             <p className="mt-8 text-fluid-body-lg font-light text-neutral-600 [text-wrap:pretty]">
               {brand.name} is a woman-owned studio in {brand.locality}. Over

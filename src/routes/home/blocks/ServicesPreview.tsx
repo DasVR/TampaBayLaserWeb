@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { offerings, servicePath } from "@/config/brand";
 import { usePageHydrated } from "@/hooks/usePageHydrated";
@@ -50,7 +49,7 @@ export function ServicesPreview() {
             className="mt-5 max-w-[min(100%,48rem)] font-display text-fluid-section-lg font-medium tracking-[-0.02em] text-white [text-wrap:balance]"
           >
             <span className="text-white/95">Curated </span>
-            <em className="text-[1.02em] italic text-accent">services</em>
+            <em className="text-[1.02em] font-semibold not-italic text-accent">services</em>
           </h2>
           <p className="mt-6 max-w-2xl text-fluid-body-lg font-light text-white/55 [text-wrap:pretty]">
             Real-life protocols—precision, patience, and respect for your comfort.
@@ -82,10 +81,9 @@ export function ServicesPreview() {
                     </p>
                     <SmartLink
                       to={servicePath(service.slug)}
-                      className="mt-6 inline-flex min-w-0 items-center gap-1.5 text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-85 sm:mt-8"
+                      className="mt-6 inline-flex min-w-0 items-center gap-1.5 text-fluid-caps font-bold uppercase tracking-[0.2em] text-accent underline-offset-4 transition-opacity hover:opacity-85 hover:underline sm:mt-8"
                     >
-                      Learn more
-                      <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden strokeWidth={2.25} />
+                      See pricing &amp; care
                     </SmartLink>
                   </article>
                 </motion.li>

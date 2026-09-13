@@ -13,7 +13,7 @@ export function PillarsGrid() {
             id="pillars-heading"
             className="mx-auto mt-6 max-w-[min(100%,48rem)] font-display text-fluid-section font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
           >
-            Why we are <em className="text-[1.02em] italic text-accent">different</em>
+            Why we are <em className="text-[1.02em] font-semibold not-italic text-accent">different</em>
           </h2>
         </Reveal>
 

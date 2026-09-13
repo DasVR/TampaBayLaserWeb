@@ -17,7 +17,7 @@ export function FAQAccordion() {
             id="faq-heading"
             className="mt-6 font-display text-fluid-section font-medium tracking-[-0.02em] text-ink [text-wrap:balance]"
           >
-            Questions we <em className="italic text-accent">love</em> to answer
+            Questions we <em className="font-semibold not-italic text-accent">love</em> to answer
           </h2>
           <p className="mt-6 text-fluid-body font-light text-neutral-600 [text-wrap:pretty]">
             Straight answers—no filler.
