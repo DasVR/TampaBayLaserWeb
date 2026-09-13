@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { brand, paths } from "@/config/brand";
 import { SITE, usePageMeta } from "@/hooks/usePageMeta";
 import { usePageSchema } from "@/hooks/usePageSchema";
+import { webpSrc } from "@/lib/image";
 import { Reveal } from "@/motion/Reveal";
 import { BookLink } from "@/shell/BookLink";
 
@@ -48,15 +49,18 @@ export function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
-              src={brand.owner.photos.primary}
-              alt={`${brand.owner.name}, ${brand.owner.role} of ${brand.name}`}
-              width={933}
-              height={1337}
-              className="h-full w-full object-cover object-top"
-              loading="eager"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet={webpSrc(brand.owner.photos.primary)} type="image/webp" />
+              <img
+                src={brand.owner.photos.primary}
+                alt={`${brand.owner.name}, ${brand.owner.role} of ${brand.name}`}
+                width={933}
+                height={1337}
+                className="h-full w-full object-cover object-top"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </motion.div>
           <Reveal delay={0.08} className="min-w-0">
             <p className="text-fluid-caps font-bold uppercase tracking-[0.22em] text-accent">
@@ -120,13 +124,16 @@ export function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06, duration: 0.45 }}
               >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="aspect-[4/5] h-full w-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <picture>
+                  <source srcSet={webpSrc(photo.src)} type="image/webp" />
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="aspect-[4/5] h-full w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </motion.li>
             ))}
           </ul>

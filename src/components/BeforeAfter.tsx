@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { webpSrc } from "@/lib/image";
 
 /** Hit strip width (px); line is visually centered in this strip. */
 const HIT_W = 40;
@@ -99,24 +100,30 @@ export function BeforeAfter({
         ref={trackRef}
         className="relative aspect-[4/5] w-full min-w-0 overflow-hidden rounded-md border border-neutral-200 bg-neutral-100 select-none"
       >
-        <img
-          src={afterSrc}
-          alt={afterAlt}
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-        <motion.div
-          className="absolute inset-0 overflow-hidden will-change-[clip-path]"
-          style={{ clipPath }}
-        >
+        <picture>
+          <source srcSet={webpSrc(afterSrc)} type="image/webp" />
           <img
-            src={beforeSrc}
-            alt={beforeAlt}
+            src={afterSrc}
+            alt={afterAlt}
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
+        </picture>
+        <motion.div
+          className="absolute inset-0 overflow-hidden will-change-[clip-path]"
+          style={{ clipPath }}
+        >
+          <picture>
+            <source srcSet={webpSrc(beforeSrc)} type="image/webp" />
+            <img
+              src={beforeSrc}
+              alt={beforeAlt}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </motion.div>
 
         <div

@@ -14,7 +14,17 @@ npm run dev
 - Clinic NAP, hours, reviews, FAQs: `src/config/brand.ts`
 - Deep service copy + pre/post care: `src/content/services.ts`
 - Blog posts (add one per month): `src/content/blog.ts`
-- Before/after photos: drop files in `public/images/before-after/{slug}/` and register in `beforeAfterGallery` inside `brand.ts`
+- Before/after photos: drop files in `public/images/before-after/{slug}/` and register in `beforeAfterGallery` inside `brand.ts`. Also generate a same-name `.webp` next to each `.jpg`/`.png` (see "Images" below) — `<BeforeAfter>` and the About page photos serve WebP automatically via `src/lib/image.ts`'s `webpSrc()`.
+
+## Images
+
+Photos render as `<picture>` with a WebP `<source>` and the original JPG as fallback (`src/lib/image.ts`). To add or update a photo:
+
+```bash
+npx sharp-cli -i public/images/path/photo.jpg -o public/images/path/photo.webp -f webp -q 85
+```
+
+(or any tool — GIMP, Squoosh, `cwebp -q 85`). Quality 85 is visually lossless for photos and typically cuts file size 25–50% versus the source JPG. Keep the original JPG/PNG alongside it — it's the fallback and the Open Graph/Twitter image source.
 
 ## SEO & analytics
 
@@ -29,7 +39,7 @@ To finish connecting the site to Google/Bing and start measuring traffic:
 5. **Google Ads conversion tracking** — set `VITE_GOOGLE_ADS_ID`; call `trackConversion("label")` from `src/lib/analytics.ts` on your booking/contact success paths to measure ad ROI.
 6. **Bump `<lastmod>` in `public/sitemap.xml`** whenever a page's content meaningfully changes, and add new blog/service URLs there and in `src/config/brand.ts` / `src/content/*` as you publish them.
 
-Other things worth doing outside this repo: convert JPGs in `public/images` to WebP/AVIF for faster loads, collect more Google reviews (rankings + `aggregateRating` accuracy), and build local citations/backlinks (Yelp, RealSelf, local directories) linking back to `tampabaylaser.com`.
+Other things worth doing outside this repo: collect more Google reviews (rankings + `aggregateRating` accuracy), and build local citations/backlinks (Yelp, RealSelf, local directories) linking back to `tampabaylaser.com`.
 
 ## Deploy (Namecheap)
 
