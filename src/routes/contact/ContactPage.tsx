@@ -3,7 +3,8 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { brand, integrations, paths } from "@/config/brand";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { hapticImpact } from "@/lib/haptic";
 import { Reveal } from "@/motion/Reveal";
 import { BookLink } from "@/shell/BookLink";
@@ -16,6 +17,15 @@ export function ContactPage() {
     title: "Contact & Book | Tampa Bay Laser | Clearwater, FL",
     description: `Visit ${brand.address.line1}, ${brand.address.line2}. Call ${brand.phoneDisplay} or email ${brand.email}. By appointment only.`,
     path: "/contact",
+  });
+
+  usePageSchema("schema-contact", {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Contact", item: `${SITE}${paths.contact}` },
+    ],
   });
 
   const [submitting, setSubmitting] = useState(false);

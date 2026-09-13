@@ -1,7 +1,8 @@
 import { Navigate, useParams } from "react-router-dom";
-import { blogPath, paths } from "@/config/brand";
+import { blogPath, brand, paths } from "@/config/brand";
 import { getBlogPost } from "@/content/blog";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { Reveal } from "@/motion/Reveal";
 import { SmartLink } from "@/shell/SmartLink";
 
@@ -14,6 +15,38 @@ export function BlogPostPage() {
     description: post?.excerpt,
     path: post ? blogPath(post.slug) : paths.blog,
   });
+
+  usePageSchema(
+    "schema-blog-post",
+    post
+      ? {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BlogPosting",
+              "@id": `${SITE}${blogPath(post.slug)}#article`,
+              headline: post.title,
+              description: post.excerpt,
+              datePublished: post.date,
+              dateModified: post.date,
+              url: `${SITE}${blogPath(post.slug)}`,
+              mainEntityOfPage: `${SITE}${blogPath(post.slug)}`,
+              author: { "@type": "Organization", name: brand.name, "@id": `${SITE}/#business` },
+              publisher: { "@id": `${SITE}/#business` },
+              image: `${SITE}/images/about/hannah-portrait.jpg`,
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+                { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}${paths.blog}` },
+                { "@type": "ListItem", position: 3, name: post.title, item: `${SITE}${blogPath(post.slug)}` },
+              ],
+            },
+          ],
+        }
+      : null,
+  );
 
   if (!post) {
     return <Navigate to={paths.blog} replace />;
