@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { brand } from "@/config/brand";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { brand, paths } from "@/config/brand";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { Reveal } from "@/motion/Reveal";
 import { BookLink } from "@/shell/BookLink";
 
@@ -9,6 +10,15 @@ export function AboutPage() {
     title: `About Hannah | ${brand.name} | Clearwater, FL`,
     description: `Meet Hannah, owner and CEO of ${brand.name}—a woman-owned laser and aesthetics clinic serving Tampa Bay since ${brand.est}.`,
     path: "/about",
+  });
+
+  usePageSchema("schema-about", {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "About", item: `${SITE}${paths.about}` },
+    ],
   });
 
   return (

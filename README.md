@@ -16,6 +16,21 @@ npm run dev
 - Blog posts (add one per month): `src/content/blog.ts`
 - Before/after photos: drop files in `public/images/before-after/{slug}/` and register in `beforeAfterGallery` inside `brand.ts`
 
+## SEO & analytics
+
+Structured data (LocalBusiness, Service, BlogPosting, BreadcrumbList, FAQPage), per-route meta tags, `sitemap.xml`, and `robots.txt` are already wired up — see `src/hooks/usePageMeta.ts` / `usePageSchema.ts` and the JSON-LD in `index.html`.
+
+To finish connecting the site to Google/Bing and start measuring traffic:
+
+1. **Google Search Console** ([search.google.com/search-console](https://search.google.com/search-console)) — add the property, verify via the `google-site-verification` meta tag commented in `index.html`, then submit `https://tampabaylaser.com/sitemap.xml`.
+2. **Bing Webmaster Tools** ([bing.com/webmasters](https://www.bing.com/webmasters)) — same idea via the `msvalidate.01` meta tag; Bing also powers Yahoo and some AI assistants.
+3. **Google Business Profile** — keep name/address/phone identical to `src/config/brand.ts` (NAP consistency is a major local-ranking signal), and add posts/photos regularly.
+4. **GA4** — create a property, set `VITE_GA_MEASUREMENT_ID` (see `.env.example`); pageviews on route changes are tracked automatically once set.
+5. **Google Ads conversion tracking** — set `VITE_GOOGLE_ADS_ID`; call `trackConversion("label")` from `src/lib/analytics.ts` on your booking/contact success paths to measure ad ROI.
+6. **Bump `<lastmod>` in `public/sitemap.xml`** whenever a page's content meaningfully changes, and add new blog/service URLs there and in `src/config/brand.ts` / `src/content/*` as you publish them.
+
+Other things worth doing outside this repo: convert JPGs in `public/images` to WebP/AVIF for faster loads, collect more Google reviews (rankings + `aggregateRating` accuracy), and build local citations/backlinks (Yelp, RealSelf, local directories) linking back to `tampabaylaser.com`.
+
 ## Deploy (Namecheap)
 
 Pushing to `main` runs `.github/workflows/deploy.yml` (build + FTPS upload).

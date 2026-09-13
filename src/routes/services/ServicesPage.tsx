@@ -1,7 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { offerings, servicePath } from "@/config/brand";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { offerings, paths, servicePath } from "@/config/brand";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { offeringIcons } from "@/lib/icons";
 import { Reveal } from "@/motion/Reveal";
 import { SmartLink } from "@/shell/SmartLink";
@@ -12,6 +13,28 @@ export function ServicesPage() {
     description:
       "Explore laser hair removal, electrolysis, facials, resurfacing, spray tan, and KeraLase in Clearwater. Pricing ranges and free consultations.",
     path: "/services",
+  });
+
+  usePageSchema("schema-services-list", {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "Services", item: `${SITE}${paths.services}` },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        itemListElement: offerings.map((s, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: s.title,
+          url: `${SITE}${servicePath(s.slug)}`,
+        })),
+      },
+    ],
   });
 
   return (

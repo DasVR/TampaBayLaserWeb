@@ -13,4 +13,12 @@
   <FilesMatch "\.(js|css|png|jpg|jpeg|gif|svg|webp|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Compress text-based assets for faster loads (Core Web Vitals)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json image/svg+xml
 </IfModule>

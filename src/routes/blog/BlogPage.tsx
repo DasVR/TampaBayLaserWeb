@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { blogPath } from "@/config/brand";
+import { blogPath, paths } from "@/config/brand";
 import { getRecentPosts } from "@/content/blog";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { SITE, usePageMeta } from "@/hooks/usePageMeta";
+import { usePageSchema } from "@/hooks/usePageSchema";
 import { Reveal } from "@/motion/Reveal";
 import { SmartLink } from "@/shell/SmartLink";
 
@@ -13,6 +14,31 @@ export function BlogPage() {
     description:
       "Pre-care tips, laser vs electrolysis guidance, and clinic notes from Tampa Bay Laser—published monthly for Clearwater & Tampa Bay clients.",
     path: "/blog",
+  });
+
+  usePageSchema("schema-blog-list", {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}${paths.blog}` },
+        ],
+      },
+      {
+        "@type": "Blog",
+        "@id": `${SITE}${paths.blog}#blog`,
+        name: "Tampa Bay Laser Blog",
+        url: `${SITE}${paths.blog}`,
+        blogPost: posts.map((post) => ({
+          "@type": "BlogPosting",
+          headline: post.title,
+          url: `${SITE}${blogPath(post.slug)}`,
+          datePublished: post.date,
+        })),
+      },
+    ],
   });
 
   return (

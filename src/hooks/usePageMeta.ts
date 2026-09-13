@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { initAnalytics, trackPageview } from "@/lib/analytics";
 
 export const SITE = "https://tampabaylaser.com";
 const DEFAULT_TITLE =
@@ -51,6 +52,9 @@ export function usePageMeta({ title, description, path }: PageMeta) {
     setMeta("twitter:title", fullTitle);
     setMeta("twitter:description", desc);
     setCanonical(url);
+
+    initAnalytics();
+    trackPageview(resolvedPath, fullTitle);
   }, [title, description, resolvedPath]);
 }
 
